@@ -114,6 +114,38 @@ module.exports = function(grunt) {
         }
       }
     },
+    ftpush: {
+      build: {
+        auth: {
+          host:'ftp.monum.nl',
+          port:21,
+          authKey:'deploy'
+        },
+        src: '',
+        dest: '/domains/monum.nl/public_html/wp-content/themes/monum',
+        exclusions: [
+          '**/.DS_Store',
+          '**/Thumbs.db',
+          '**/node_modules/**',
+          '**/.gitignore',
+          'assets/less',
+          'assets/css/main.css',
+          'assets/css/main.css.map',
+          'assets/js/_main.js',
+          'assets/js/scripts.js',
+          'assets/js/plugins',
+          'node_modules',
+          '.bowerrc',
+          '.editorconfig',
+          '.ftppass',
+          '.git',
+          '.grunt',
+          '.jshintrc'
+        ],
+        keep: [],
+        simple: true
+      }
+    },
     watch: {
       less: {
         files: [
@@ -138,6 +170,7 @@ module.exports = function(grunt) {
         files: [
           'assets/css/main.css',
           'assets/js/scripts.js',
+          'templates/*.php',
           'woocommerce/*.php',
           'woocommerce-swatches/*.php',
           '*.php'
@@ -162,6 +195,7 @@ module.exports = function(grunt) {
     'autoprefixer:build',
     'uglify',
     'modernizr',
-    'version'
+    'version',
+    'ftpush'
   ]);
 };
