@@ -57,17 +57,14 @@ var Monum = {
         var $this = $(this);
         $this.attr('tt', $this.attr('title')).removeAttr('title');      
         // Store our timeout function in .data
-        $this.data("hover_delay", setTimeout(function(title) {
-          $('<aside class="tool-tip"><p>'+$this.attr('tt')+'</p></aside>').hide()
-            .appendTo( $this )
-            .css( {
-              'top' : (e.pageY + 16) + "px",
-              'left' : (e.pageX - 40) + "px"
-          }).fadeIn(500);
+        $this.data('hover_delay', setTimeout(function(title) {
+          $('<div class="tool-tip"><p>'+$this.attr('tt')+'</p></div>').hide()
+            .appendTo($this)
+            .fadeIn(500);
         }, 500));
       }
       ).mouseleave(function() {
-        var hover_delay = $(this).data("hover_delay");
+        var hover_delay = $(this).data('hover_delay');
         if (hover_delay) {
           clearTimeout(hover_delay);
           $(this).attr('title', $(this).attr('tt'));
