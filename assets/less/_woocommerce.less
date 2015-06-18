@@ -1,0 +1,96 @@
+/* ==========================================================================
+   WooCommerce Tweaks
+   ========================================================================== */
+     
+.layout-full {
+	.woocommerce-result-count,
+	.woocommerce-ordering,
+	.woocommerce_ordering {
+		text-align:left !important;
+	}
+	&.post-type-archive-product {
+		h1.page-title {
+			text-align:left !important;
+			font-size:2.291em !important;
+			text-transform:none !important;
+		}
+	}
+}
+
+/* Product Archive
+-------------------------------------------------------------- */
+ul.products {
+	li.product {
+		a {
+			img {
+				.border_radius(@borderradius);
+				.box_shadow(0 1px 2px 1px rgba(0, 0, 0, 0.25));
+				@media only screen and (max-width: 800px) {
+  				margin-bottom:0 !important;
+				}
+			}
+		}
+		.product-details {
+  		.border_radius(@borderradius);
+  		border:none !important;
+  		h3 {font-size:1.2em !important; }
+  		.price {
+    		font-weight:400 !important;
+    		display:none;
+      }
+  		@media only screen and (max-width: 800px) {
+				margin-top:15px;
+				h3 {margin:0; }
+			}
+    }
+  }
+}
+#header .cart-contents {
+	color:@mauvegrey;
+}   
+.quantity .qty {
+	background:@mauvegrey;
+}
+.woocommerce_message, 
+.woocommerce_info, 
+.woocommerce_error, 
+.woocommerce-message, 
+.woocommerce-info, 
+.woocommerce-error {
+  background:lighten(@mauvelight, 30%) !important;
+  .button {
+    padding:0.6em 1em !important;
+    text-transform:capitalize;
+    color:white !important;
+  }  
+}
+
+/* Cart
+-------------------------------------------------------------- */
+table.cart {
+  th.product-remove, 
+  td.product-remove, 
+  th.product-thumbnail, 
+  td.product-thumbnail, 
+  th.product-price, 
+  td.product-price,
+  td.product-subtotal {
+    font-weight:400 !important;
+  }
+  td.product-name {
+    a {font-weight:400 !important; }
+    dl.variation {
+      font-style:normal !important;
+      dt {
+        margin-right: 0.4em !important;
+        font-weight:400 !important;
+      }
+      dd {
+        float:left;
+        p {
+          font:inherit;
+        }
+      }
+    }
+  }
+}

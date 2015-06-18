@@ -1,0 +1,12 @@
+/*
+ Theme Name:     Monum
+ Theme URI:      http://www.monum.nl
+ Description:    Custom Peddlar Child Theme for Monum
+ Author:         Dedato ontwerpers en architecten
+ Author URI:     http://dedato.com
+ Template:       peddlar
+ Version:        1.1.4
+*/
+
+/* Import Parent Theme CSS */
+@import "../peddlar/style.css";

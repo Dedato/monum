@@ -1,0 +1,59 @@
+/* ==========================================================================
+   Peddlar Theme Color
+   ========================================================================== */
+   
+@color_links: @mauvelight;
+
+.widget_woodojo_tabs ul.nav-tabs li.active a:after, .widget_woodojo_tabs ul.nav-tabs li a:hover:after  {
+	color: @color_links !important;
+}
+
+a {
+	color: @color_links !important;
+	&:hover {
+		color:darken(@color_links,20%) !important;
+	}
+}
+
+.post .entry blockquote, .type-page .entry blockquote {
+	border-left-color: @color_links !important;
+}
+
+.single-product .summary .price, .post p.tags:before, .type-page p.tags:before, .post .post-meta .post-author a:before, .type-page .post-meta .post-author a:before, .post .post-meta .post-category a:before, .type-page .post-meta .post-category a:before, .post .post-more .comments a:before, .type-page .post-more .comments a:before, p.stars a:hover:before, p.stars a:focus:before {
+	color: @color_links !important;
+}
+
+.flex-control-paging li a.flex-active, .quantity .plus:hover, .quantity .minus:hover {
+	background: @color_links !important;
+}
+
+#header .cart-contents:before, a.button, #commentform #submit, .submit, .added_to_cart, input[type=submit], input.button, button.button, .wrapper .woo-sc-button {
+	background: @color_links !important;
+	&:hover {
+		background: darken(@color_links,5%) !important;
+	}
+}
+
+#header .cart-contents:hover:before, a.button.alt, #commentform #submit.alt, .submit.alt, .added_to_cart.alt, input[type=submit].alt, input.button.alt, button.button.alt, .wrapper .woo-sc-button.alt {
+	background: darken(@color_links,5%) !important;
+}
+
+#navigation ul.nav > li:hover > a {
+	.inset_box_shadow(0,0.207em,0,0,@color_links) !important;
+}
+
+ul.products li.product .product-details .star-rating:before, ul.products li.product .product-details .star-rating span:before {
+	color:@color_links - #333 !important;
+}
+
+.ie8 {
+	ul.products li.product .product-details {
+		background: @color_links !important;
+	}
+}
+
+@media only screen and (min-width: 800px) {
+	ul.products li.product .product-details {
+		background: fade(@color_links,95%) !important;
+	}
+}

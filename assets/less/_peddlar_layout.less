@@ -1,0 +1,127 @@
+/* ==========================================================================
+   Peddlar General Tweaks
+   ========================================================================== */
+
+
+/* General
+-------------------------------------------------------------- */
+h1, h2, h3, h4, h5, h6 {
+	color:@mauvegrey;
+	font-family:'Source Sans Pro', arial, sans-serif;
+	font-weight:400;
+}
+h3, 
+.gamma {
+  font-size: 1.2em;
+}
+
+/* Tables
+-------------------------------------------------------------- */
+table thead,
+table tbody {
+  th,
+  strong {
+    font-weight:400;
+  }
+}
+
+
+/* Forms
+-------------------------------------------------------------- */
+input[type="text"], 
+input.input-text, 
+textarea, 
+input.txt, 
+input[type="tel"], 
+input[type="email"], 
+input[type="password"] {
+  .border_radius(@borderradius);
+}
+
+#searchform .s, 
+.woocommerce-product-search .s, 
+#searchform #s, 
+.woocommerce-product-search #s, 
+#searchform .search-field, 
+.woocommerce-product-search .search-field {
+  background:#f7f7f7;
+  font-family:'Source Sans Pro', arial, sans-serif;
+}
+
+
+/* Buttons
+-------------------------------------------------------------- */
+a.button,
+#commentform #submit,
+.submit,
+.added_to_cart,
+input[type=submit],
+input.button,
+button.button,
+.wrapper .woo-sc-button, 
+.slide-content .woo-sc-button {
+  color:white !important;
+  background: @mauvelight !important;
+  padding:0.875em 1em;
+  font-weight:400;
+  -webkit-appearance:none;
+  .border_radius(@borderradius);
+  &:hover,
+	&:focus {
+		background:@mauvegrey !important;
+	}
+	&.alt {
+  	background:darken(@mauvelight,5%);
+    &:hover,
+  	&:focus {
+  		background:@mauvegrey !important;
+  	}
+	}
+}
+
+.post .entry blockquote, 
+.type-page .entry blockquote {
+	border-left-color: @mauvelight;
+}
+
+.flex-control-paging li a.flex-active, 
+.quantity .plus:hover, 
+.quantity .minus:hover {
+	background: @mauvelight;
+}
+
+#navigation ul.nav > li:hover > a {
+	.inset_box_shadow(0,0.207em,0,0,@mauvelight);
+}
+
+ul.products li.product .product-details .star-rating:before, 
+ul.products li.product .product-details .star-rating span:before {
+	color:@mauvelight - #333;
+}
+
+.ie8 {
+	ul.products li.product .product-details {
+		background: @mauvelight;
+	}
+}
+
+@media only screen and (min-width: 800px) {
+	ul.products li.product .product-details {
+		background: fade(@mauvelight,95%);
+	}
+}
+
+.single-product .summary .price, 
+.post p.tags:before, 
+.type-page p.tags:before, 
+.post .post-meta .post-author a:before, 
+.type-page .post-meta .post-author a:before, 
+.post .post-meta .post-category a:before, 
+.type-page .post-meta .post-category a:before, 
+.post .post-more .comments a:before, 
+.type-page .post-more .comments a:before, 
+p.stars a:hover:before, 
+p.stars a:focus:before {
+  font-weight:400;
+	color: @mauvelight;
+}
