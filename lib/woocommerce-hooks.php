@@ -143,15 +143,15 @@ function woo_rename_tabs( $tabs ) {
 // Add package contents tab
 add_filter( 'woocommerce_product_tabs', 'monum_new_product_tab' );
 function monum_new_product_tab( $tabs ) {
-	$tabs['content_tab'] = array(
+	$tabs['package_contents'] = array(
 		'title' 	=> __( 'Package Contents', 'monum' ),
 		'priority' 	=> 50,
-		'callback' 	=> 'monum_package_contents_tab_ontent'
+		'callback' 	=> 'monum_package_contents_tab_content'
 	);
 	return $tabs;
 }
 // Add package contents panel
-function monum_package_contents_tab_ontent() {
+function monum_package_contents_tab_content() {
   global $post;
   $contents = get_field('product_package_contents', $post->ID);
   if ( $contents ) {
@@ -171,4 +171,17 @@ function monum_custom_swatches_picker_html( $picker, $swatch ){
   if ($st_desc) 
     $out .= '<span id="'. $st_slug .'_desc" class="attribute_'. $st_slug .'_picker_desc swatch-desc-tooltip" title="'. $st_desc .'"></span>';
   return $out;
+}
+
+// Load PrettyPhoto for the whole site
+add_action( 'wp_enqueue_scripts', 'frontend_scripts_include_lightbox' );
+function frontend_scripts_include_lightbox() {
+  global $woocommerce;
+  $suffix      = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+  $lightbox_en = get_option( 'woocommerce_enable_lightbox' ) == 'yes' ? true : false;
+  if ( $lightbox_en ) {
+    wp_enqueue_script( 'prettyPhoto', $woocommerce->plugin_url() . '/assets/js/prettyPhoto/jquery.prettyPhoto' . $suffix . '.js', array( 'jquery' ), $woocommerce->version, true );
+    wp_enqueue_script( 'prettyPhoto-init', $woocommerce->plugin_url() . '/assets/js/prettyPhoto/jquery.prettyPhoto.init' . $suffix . '.js', array( 'jquery' ), $woocommerce->version, true );
+    wp_enqueue_style( 'woocommerce_prettyPhoto_css', $woocommerce->plugin_url() . '/assets/css/prettyPhoto.css' );
+  }
 }
