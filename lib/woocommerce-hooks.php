@@ -113,7 +113,7 @@ function monum_change_trailing_zeros( $trim ) {
 function monum_add_price_suffix($format, $currency_pos) {
 	$currency  = get_woocommerce_currency(); // EUR
 	$dec_sep   = stripslashes( get_option( 'woocommerce_price_decimal_sep' ) ); // ,
-	$format    = '%1$s%2$s' . $dec_sep . '-';
+	$format    = '%1$s%2$s' . $dec_sep . '-'; // -
 	return $format;
 }
 add_action('woocommerce_price_format', 'monum_add_price_suffix', 10, 2);
@@ -128,7 +128,7 @@ function monum_show_variation_price( $value, $object = null, $variation = null )
 }
 
 // Remove quantity selection in all product types
-add_filter( 'woocommerce_is_sold_individually', 'monum_remove_all_quantity_fields', 10, 2 ); 
+//add_filter( 'woocommerce_is_sold_individually', 'monum_remove_all_quantity_fields', 10, 2 ); 
 function monum_remove_all_quantity_fields( $return, $product ) {
   return true;
 }
