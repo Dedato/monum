@@ -25,7 +25,7 @@ function roots_scripts() {
       'modernizr' => '/assets/vendor/modernizr/modernizr.js'
     );
   } else {
-    $get_assets = file_get_contents(get_template_directory() . '/assets/manifest.json');
+    $get_assets = file_get_contents(get_stylesheet_directory_uri() . '/assets/manifest.json');
     $assets     = json_decode($get_assets, true);
     $assets     = array(
       'css'       => '/assets/css/main.min.css?' . $assets['assets/css/main.min.css']['hash'],
