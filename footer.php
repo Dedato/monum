@@ -78,8 +78,14 @@ if ( ( woo_active_sidebar( 'footer-1' ) ||
 			<p><?php bloginfo(); ?> &copy; <?php echo date( 'Y' ); ?>. <?php _e( 'All Rights Reserved.', 'woothemes' ); ?></p>
 		<?php } ?>
 		</div>
-
-		<div id="credit" class="col-right"></div>
+		<div id="credit" class="col-right">
+	    <?php if( isset( $woo_options['woo_footer_right'] ) && $woo_options['woo_footer_right'] == 'true' ) {
+	    	echo stripslashes( $woo_options['woo_footer_right_text'] );
+		} else { ?>
+		  <?php echo file_get_contents(esc_url( get_stylesheet_directory_uri() . '/assets/img/iDeal_logo.svg') ); ?>
+		  <?php echo file_get_contents(esc_url( get_stylesheet_directory_uri() . '/assets/img/Mister_Cash_logo.svg') ); ?>
+		<?php } ?>
+		</div>
 
 	</div><!--/.footer-inner-->
 
