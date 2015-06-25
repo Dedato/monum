@@ -13,6 +13,7 @@
     "assets/vendor"
   ],
   "dependencies": {
-    "modernizr": "2.8.2"
+    "modernizr": "2.8.2",
+    "respimage": "~1.4.1"
   }
 }
