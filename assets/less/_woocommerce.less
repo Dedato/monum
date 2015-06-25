@@ -67,18 +67,13 @@ ul.products {
 
 /* Cart
 -------------------------------------------------------------- */
+table.shop_table,
 table.cart {
-  th.product-remove, 
-  td.product-remove, 
-  th.product-thumbnail, 
-  td.product-thumbnail, 
-  th.product-price, 
-  td.product-price,
-  td.product-subtotal {
-    font-weight:400 !important;
-  }
   td.product-name {
-    a {font-weight:400 !important; }
+    a {
+      font-weight:400 !important;
+      color:@grey !important;
+    }
     dl.variation {
       font-style:normal !important;
       dt {
@@ -93,4 +88,57 @@ table.cart {
       }
     }
   }
+  td.product-quantity {
+    .quantity {
+      .qty {background:@mauvelight; }
+    }  
+  }
+  td.product-subtotal {
+    font-weight:400;
+  }
+}
+
+/* Payment
+-------------------------------------------------------------- */
+.form-row {
+  label {font-weight:400; }
+  .input-text {
+    background-color:lighten(@lightgrey, 5%);
+    font-weight:400 !important;
+    color:@grey !important;
+  }
+  .select2-container {
+    .select2-choice {
+      font-weight:400 !important;
+      > .select2-chosen {color:@grey; }
+    }
+  }  
+  &.notes {
+    textarea {max-width:100%; }
+  }
+}
+#payment {
+  .payment_methods {
+    li {
+      background-repeat:no-repeat;
+      background-position:right 1em top 12px;
+      background-size:auto 32px;
+      label {
+        font-weight:400;
+        img {display:none; }
+      }
+      &.payment_method_paypal {background-image:url('../img/paypal_logo.svg'); }
+      &.payment_method_idealcheckout_ideal {background-image:url('../img/ideal_logo.svg'); }
+      &.payment_method_idealcheckout_visa {background-image:url('../img/visa_logo.svg'); }
+      &.payment_method_idealcheckout_mistercash {background-image:url('../img/mistercash_logo.svg'); }
+    }
+  }
+  .place-order {
+    .button {font-size:1em; }
+  }  
+}
+
+.select2-results li {
+  color:@grey;
+  font-weight:400;
 }
