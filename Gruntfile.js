@@ -6,6 +6,7 @@ module.exports = function(grunt) {
   require('time-grunt')(grunt);
 
   var jsFileList = [
+    'assets/vendor/respimage/respimage.min.js',
     'assets/js/plugins/*.js',
     'assets/js/_*.js'
   ];
