@@ -44,6 +44,8 @@
     &::before {
       .icon();
       content:"\e602";
+      font-size:2em;
+      padding:0.4em;
     }
     span.price {font-weight:400;}
     span.contents {text-transform:none;}
@@ -59,9 +61,12 @@
 -------------------------------------------------------------- */
 #navigation {
   ul.nav {
-    > li {
+    > li { 
       > a {
         font-weight:400;
+        @media only screen and (max-width: 800px) {
+          padding:0.5em 1.618em;
+        }        
         &:hover,
         &:focus {
           color:@mauvegrey;
@@ -74,6 +79,9 @@
         > a {
           .inset_box_shadow(0, .207em, 0, 0, @mauvegrey);
           color:@mauvegrey;
+          @media only screen and (max-width: 800px) {
+            .inset_box_shadow(0, 0, 0, 0);
+          }
         }
       }
       &:hover,
@@ -91,6 +99,9 @@
     input[type="submit"] {
       background:rgba(0, 0, 0, 0) url("../../../../themes/peddlar/images/ico-search.png") no-repeat scroll center center / 16px 16px;
     }
+  }
+  @media only screen and (max-width: 800px) {
+    padding:0;
   }
 }
 
@@ -117,10 +128,11 @@
               }
             }
           }
-          p {
+          .caption {
             display:inline-block;
             text-align:left;
             width:100%;
+            color:@mauvelight;
           }
         }
       }
@@ -140,7 +152,7 @@
                 }
               }
             }  
-            p {
+            .caption {
               text-align:right;
               width:60%;
             }
@@ -504,6 +516,9 @@ div.swatch-wrapper {
 
 /* Footer
 -------------------------------------------------------------- */
+.footer-shop {
+  margin-bottom:1.618em;
+}  
 #footer-widgets {
   padding:0em;
   .widget {
