@@ -3,6 +3,15 @@
    Roots setup
    ========================================================================== */ 
 function roots_setup() {
+  // Add post thumbnails
+  // http://codex.wordpress.org/Post_Thumbnails
+  // http://codex.wordpress.org/Function_Reference/set_post_thumbnail_size
+  // http://codex.wordpress.org/Function_Reference/add_image_size
+  add_theme_support('post-thumbnails');
+  // Add custom slider sizes
+  add_image_size('slider_large', 1680, 670, true); // desktop - tablet landscape
+  add_image_size('slider_medium', 1024, 408, true); // tablet landscape - tablet portrait
+  add_image_size('slider_small', 768, 306, true); // tablet portrait - mobile
   // Tell the TinyMCE editor to use a custom stylesheet
   add_editor_style('/assets/css/editor-style.css');
 }
