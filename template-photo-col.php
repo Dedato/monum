@@ -8,7 +8,7 @@ get_header();
 global $woo_options;
 $main_class = 'no-gallery col-left';
 ?> 
-  <div id="content" class="photo-page col-full">
+  <div id="content" class="tmpl-photo-page col-full">
   	<?php woo_main_before(); ?>
   	<?php if( have_rows('photo_gallery') ): 
     	$main_class = 'col-right'; ?>
