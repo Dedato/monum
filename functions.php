@@ -9,6 +9,7 @@ $includes = array(
 	'lib/woocommerce-fields.php', 	 // Custom Woocommerce fields
 	'lib/roots-config.php',          // Roots Configuration
 	'lib/roots-scripts.php',         // Roots Scripts and stylesheets
+	'lib/acf-fields.php',            // ACF functionality
 );
 // Allow child themes/plugins to add widgets to be loaded.
 $includes = apply_filters( 'monum_includes', $includes );
