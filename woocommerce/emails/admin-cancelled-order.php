@@ -25,7 +25,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly ?>
 		</tr>
 	</thead>
 	<tbody>
-		<?php echo $order->email_order_items_table( false, true ); ?>
+		<?php echo $order->email_order_items_table( false, true, true, true, array( 90, 90 ) ); ?>
 	</tbody>
 	<tfoot>
 		<?php
