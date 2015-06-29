@@ -41,3 +41,13 @@ function split_content() {
   if (!empty($content)) $ret .= '<div class="content_more">'. implode($content). '</div>';
   return apply_filters('the_content', $ret);
 }
+
+
+/* ==========================================================================
+   Role capabilities editor
+   ========================================================================== */
+   
+$editor       = get_role('editor');
+$shopmanager  = get_role('shop_manager');
+$editor->add_cap('edit_theme_options');
+$shopmanager->add_cap('edit_theme_options');
