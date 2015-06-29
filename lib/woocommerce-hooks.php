@@ -187,9 +187,23 @@ function frontend_scripts_include_lightbox() {
 }
 
 // Add Payment Type to WooCommerce Admin Email
-add_action( 'woocommerce_email_after_order_table', 'add_payment_method_to_admin_new_order', 15, 2 ); 
+//add_action( 'woocommerce_email_after_order_table', 'add_payment_method_to_admin_new_order', 15, 2 ); 
 function add_payment_method_to_admin_new_order( $order, $is_admin_email ) {
   if ( $is_admin_email ) {
     echo '<p><strong>Payment Method:</strong> ' . $order->payment_method_title . '</p>';
   }
+}
+
+// Add custom styling to email templates
+add_action('woocommerce_email_header', 'add_css_to_email', 10, 1);
+function add_css_to_email() {
+  echo '
+  <style type="text/css">
+    #template_header_image {width:600px; text-align:left;}
+    #template_header_image img {width:270px; height:auto; }
+    #template_header h1 {font-size:21px; padding:15px 48px;}
+    #body_content_inner .order_item td {vertical-align:top !important;}
+    #body_content_inner .order_item td img {vertical-align:top !important; display:block; margin-bottom:10px;}
+    #template_footer #credit {text-align:left;}
+  </style>';
 }
