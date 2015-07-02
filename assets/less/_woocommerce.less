@@ -29,6 +29,17 @@ ul.products {
   				margin-bottom:0 !important;
 				}
 			}
+			&:hover,
+			&:focus {
+  			 text-decoration:none;
+  			.product-details {
+    			h3 {
+      			@media only screen and (max-width:800px) {
+      			  color:@mauvelight;
+      			}  
+      		}
+  			}
+  		}
 		}
 		.product-details {
   		.border_radius(@borderradius);
