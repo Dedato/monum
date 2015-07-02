@@ -539,7 +539,7 @@ div.swatch-wrapper {
   margin-bottom:1.618em;
 }  
 #footer-widgets {
-  padding:0em;
+  padding:0;
   .widget {
     margin-bottom:1em;
     ul {
@@ -559,11 +559,17 @@ div.swatch-wrapper {
 }
 #footer {
   background-color:#FFF;
+  padding:2em 1.618em 1em;
   .col-right {
+    margin-top:20px;
     svg {
-      height:40px;
+      height:30px;
       width:auto;
-      margin-left:10px;
+      margin:0 10px 10px 0;
+    }
+    @media only screen and (min-width: 800px) {
+      margin-top:0;
+      svg {margin:0 0 0 10px; }
     }
   }
 }
