@@ -3,6 +3,11 @@
    WooCommerce function overrides
    ========================================================================== */
 
+
+/* ==========================================================================
+   Header
+   ========================================================================== */
+   
 // Ensure cart contents update when products are added to the cart via AJAX
 add_filter( 'add_to_cart_fragments', 'woocommerce_header_add_to_cart_fragment' );
 if ( ! function_exists( 'woocommerce_header_add_to_cart_fragment' ) ) {
@@ -18,12 +23,23 @@ if ( ! function_exists( 'woocommerce_header_add_to_cart_fragment' ) ) {
 if ( ! function_exists( 'woo_cart_link' ) ) {
 	function woo_cart_link() {
 		global $woocommerce;
+		//print_r($woocommerce->cart);
+		$currency  = get_woocommerce_currency_symbol(); // €
+    $dec_sep   = stripslashes( get_option( 'woocommerce_price_decimal_sep' ) ); // ,
 		?>
-		<a class="cart-contents" href="<?php echo esc_url( $woocommerce->cart->get_cart_url() ); ?>" title="<?php esc_attr_e( 'View your order', 'monum' ); ?>"><span class="price"><?php echo $woocommerce->cart->get_cart_total(); ?></span><span class="contents"><?php echo sprintf( _n('%d product', '%d products', $woocommerce->cart->get_cart_contents_count(), 'monum' ), $woocommerce->cart->get_cart_contents_count() );?></span></a>
+		<a class="cart-contents" href="<?php echo esc_url( $woocommerce->cart->get_cart_url() ); ?>" title="<?php esc_attr_e( 'View your order', 'monum' ); ?>">
+  		<span class="price"><?php echo $currency .' '. $woocommerce->cart->subtotal . $dec_sep .'-'; ?></span>
+  		<span class="contents"><?php echo sprintf( _n('%d product', '%d products', $woocommerce->cart->get_cart_contents_count(), 'monum' ), $woocommerce->cart->get_cart_contents_count() );?></span>
+    </a>
 		<?php
 	}
 }
 
+
+/* ==========================================================================
+   Products
+   ========================================================================== */
+   
 // Remove Shop Product Sorting
 remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 );
 
@@ -32,6 +48,11 @@ function woocommerce_result_count() {
   return;
 }
 
+
+/* ==========================================================================
+   Single Product
+   ========================================================================== */
+   
 // Change Add To Cart text on normal product pages
 add_filter( 'woocommerce_product_single_add_to_cart_text', 'woo_custom_single_cart_button_text' ); // 2.1 +
 function woo_custom_single_cart_button_text() {
@@ -103,20 +124,12 @@ function monum_remove_variation_price_range( $price ) {
   return $price;
 }
 
-// Always hide trailing zeros
-add_filter( 'woocommerce_price_trim_zeros', 'monum_change_trailing_zeros', 10, 2 );
-function monum_change_trailing_zeros( $trim ) {
-  return true; 
+// Replace trailing zeros with dash
+add_filter( 'wc_price', 'monum_change_trailing_zeros', 10, 2 );
+function monum_change_trailing_zeros($price, $args) {
+  $price = preg_replace('/00/', '-', $price);
+  return $price;
 }
-
-// Add suffix to variation add to cart price
-function monum_add_price_suffix($format, $currency_pos) {
-	$currency  = get_woocommerce_currency(); // EUR
-	$dec_sep   = stripslashes( get_option( 'woocommerce_price_decimal_sep' ) ); // ,
-	$format    = '%1$s%2$s' . $dec_sep . '-'; // -
-	return $format;
-}
-add_action('woocommerce_price_format', 'monum_add_price_suffix', 10, 2);
 
 // Display variation's price even if min and max prices are the same
 add_filter('woocommerce_available_variation', 'monum_show_variation_price', 10, 3);
@@ -186,6 +199,71 @@ function frontend_scripts_include_lightbox() {
   }
 }
 
+
+/* ==========================================================================
+   Checkout
+   ========================================================================== */
+
+// Customizing checkout fields
+add_filter( 'woocommerce_checkout_fields' , 'custom_override_checkout_fields' );
+function custom_override_checkout_fields( $fields ) {
+  $fields['billing']['billing_gender'] = array(
+    'type'      => 'radio',
+		'options'   => array('Male' => __('Male', 'monum'), 'Female' => __('Female', 'monum')),    
+    'label'     => __('Gender', 'monum'),
+    'required'  => true,
+    'class'     => array('form-row-wide', 'radio-field'),
+    'clear'     => true
+  );
+  $fields['order']['order_comments']['placeholder'] = __('For example special notes for delivery.', 'monum');
+  $fields['order']['order_comments']['label'] = __('Comments on the order', 'monum');
+  return $fields;
+}
+// Re-order checkout fields
+add_filter('woocommerce_checkout_fields', 'order_fields');
+function order_fields($fields) {
+  $order = array(
+    'billing_first_name', 
+    'billing_last_name', 
+    'billing_gender',
+    'billing_company', 
+    'billing_address_1',
+    'billing_postcode', 
+    'billing_country', 
+    'billing_email', 
+    'billing_phone'
+  );
+  foreach($order as $field) {
+    $ordered_fields[$field] = $fields['billing'][$field];
+  }
+  $fields['billing'] = $ordered_fields;
+  return $fields;
+}
+// Customizing default address fields
+add_filter( 'woocommerce_default_address_fields' , 'custom_override_default_address_fields' );
+function custom_override_default_address_fields( $address_fields ) {
+  $address_fields['first_name']['label'] = __('First name or initials', 'monum'); // Edit label
+  unset($address_fields['address_2']); // Remove 2nd address
+  return $address_fields;
+}
+// Update the order meta with field value
+add_action( 'woocommerce_checkout_update_order_meta', 'my_custom_checkout_field_update_order_meta' );
+function my_custom_checkout_field_update_order_meta( $order_id ) {
+  if ( ! empty( $_POST['billing_gender'] ) ) {
+    update_post_meta( $order_id, __('Gender', 'monum'), esc_attr( $_POST['billing_gender'] ) );
+  }
+}
+// Display field value on the order edit page
+add_action( 'woocommerce_admin_order_data_after_billing_address', 'my_custom_checkout_field_display_admin_order_meta', 10, 1 );
+function my_custom_checkout_field_display_admin_order_meta ( $order ) {
+  echo '<p><strong>'.__('Gender', 'monum').':</strong> ' . get_post_meta( $order->id, __('Gender', 'monum'), true ) . '</p>';
+}
+
+
+/* ==========================================================================
+   Emails
+   ========================================================================== */
+   
 // Add Payment Type to WooCommerce Admin Email
 //add_action( 'woocommerce_email_after_order_table', 'add_payment_method_to_admin_new_order', 15, 2 ); 
 function add_payment_method_to_admin_new_order( $order, $is_admin_email ) {
@@ -206,4 +284,67 @@ function add_css_to_email() {
     #body_content_inner .order_item td img {vertical-align:top !important; display:block; margin-bottom:10px;}
     #template_footer #credit {text-align:left;}
   </style>';
+}
+
+// Notify shop managers when customer saves address
+add_action( 'woocommerce_customer_save_address','notify_admin_customer_save_address', 10, 2);
+function notify_admin_customer_save_address( $user_id, $load_address ) {
+  
+  global $current_user;
+
+	// get user data
+	get_currentuserinfo();
+	$billing_address = '';
+	$billing_address .= "\n";
+  $billing_address .= $current_user->_billing_first_name;
+  $billing_address .= $current_user->_billing_last_name;
+  $billing_address .= $current_user->_billing_company;
+  $billing_address .= $current_user->_billing_address_1;
+  $billing_address .= $current_user->_billing_city;
+  $billing_address .= $current_user->_billing_postcode;
+  $billing_address .= $current_user->_billing_country;
+  $billing_address .= $current_user->_billing_state;
+  $billing_address .= $current_user->_billing_email;
+  $billing_address .= $current_user->_billing_phone;
+  
+  $shipping_address = get_formatted_shipping_address();
+  
+	// get admin email
+	$email   = get_option( 'admin_email', '' );
+	$subject = "Customer Changed Address";
+
+	// format email
+	$message = 'Username: ' . $current_user->user_login . "\n";
+	$message .= 'User email: ' . $current_user->user_email . "\n";
+	$message .= 'User first name: ' . $current_user->user_firstname . "\n";
+	$message .= 'User last name: ' . $current_user->user_lastname . "\n";
+	$message .= "\n";
+	$message .= "\n";
+	$message .= 'New billing address:' . $billing_address . "\n";
+	$message .= 'New shipping address:' . $shipping_address . "\n";
+
+	// make sure we have all of the required data
+	if ( empty ( $email ) ) {
+		return;
+	}
+	// send email
+	wp_mail( $email, $subject, $message );
+}
+
+function get_formatted_shipping_address() {
+	global $woocommerce;
+	$countries    = new WC_Countries;
+	$country      = $woocommerce->customer->get_shipping_country();
+	$country_full = ( $country && isset( $countries->countries[ $country ] ) ) ? $countries->countries[ $country ] : $country;
+	
+	$shipping_address = '';
+	$shipping_address .= "\n";
+	$shipping_address .= $woocommerce->customer->get_shipping_address() . "\n";
+	$shipping_address .= $woocommerce->customer->get_shipping_city() . " ";
+	$shipping_address .= $woocommerce->customer->get_shipping_state() . " ";
+	$shipping_address .= $woocommerce->customer->get_shipping_postcode() . "\n";
+	$shipping_address .= $country_full;
+
+	return $shipping_address;
+	unset($countries);
 }
