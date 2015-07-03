@@ -101,7 +101,11 @@ table.cart {
   }
   td.product-quantity {
     .quantity {
-      .qty {background:@mauvelight; }
+      .qty {
+        background:@mauvelight;
+        font-weight:400;
+        padding:0.6em 0.8em;
+      }
     }  
   }
   td.product-subtotal {
@@ -127,6 +131,16 @@ table.cart {
   &.notes {
     textarea {max-width:100%; }
   }
+  &.radio-field {
+    input.input-radio,
+    label.radio {
+      display:inline;
+      margin:0 0.5em 0 0
+    }
+    label.radio {
+      &:not(:last-child) {margin:0 1em 0 0; }
+    }
+  }
 }
 #payment {
   .payment_methods {
@@ -134,6 +148,47 @@ table.cart {
       background-repeat:no-repeat;
       background-position:right 1em top 12px;
       background-size:auto 32px;
+      // Following CSS3 technique: http://code.stephenmorley.org/html-and-css/styling-checkboxes-and-radio-buttons/
+      input[type=radio]:not(old) {
+        width:2em;
+        margin:0;
+        padding:0;
+        font-size:1em;
+        opacity:0;
+        + label {
+          display      : inline-block;
+          margin-left  : -2em;
+          line-height  : 2em;
+          > span {
+            display          : inline-block;
+            width            : 1.3125em;
+            height           : 1.3125em;
+            margin           : 0.25em 0.5em 0.25em 0.25em;
+            border           : 0.0625em solid rgb(192,192,192);
+            border-radius    : 1em;
+            .vertical_gradient(#F0F0F0, #E0E0E0);
+            vertical-align   : bottom;
+          }
+        }
+        // Checked
+        &:checked {
+          + label {
+            > span {
+              background       : rgb(153,204,102);
+              .vertical_gradient(#77B8FC, #3697FD);
+              > span {
+                display          : block;
+                width            : 0.75em;
+                height           : 0.75em;
+                margin           : 0.1875em;
+                border           : 0.0625em solid rgb(115,153,77);
+                border-radius    : 1em;
+                .vertical_gradient(#E0E0E0, #F0F0F0);
+              }
+            }
+          }
+        }
+      }
       label {
         font-weight:400;
         img {display:none; }
@@ -167,7 +222,6 @@ ul.order_details {
     }
   }
 }
-
 .addresses {
   address, 
   dfn {
@@ -182,6 +236,9 @@ ul.order_details {
   .entry {
     .myaccount_user {
       strong {font-weight:400; }
+    }
+    .logout {
+      margin-bottom:25px;
     }
     .my_account_orders {
       td.order-number {
