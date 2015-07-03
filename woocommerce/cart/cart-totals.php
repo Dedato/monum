@@ -55,7 +55,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<td><?php wc_cart_totals_fee_html( $fee ); ?></td>
 			</tr>
 		<?php endforeach; ?>
-
+    
 		<?php if ( WC()->cart->tax_display_cart == 'excl' ) : ?>
 			<?php if ( get_option( 'woocommerce_tax_total_display' ) == 'itemized' ) : ?>
 				<?php foreach ( WC()->cart->get_tax_totals() as $code => $tax ) : ?>
