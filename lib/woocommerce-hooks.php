@@ -206,14 +206,6 @@ function frontend_scripts_include_lightbox() {
    Checkout
    ========================================================================== */
 
-// Cart item price without tax
-add_filter( 'woocommerce_cart_item_price', 'filter_woocommerce_cart_item_price', 10, 3 );
-function filter_woocommerce_cart_item_price( $product, $cart_item, $cart_item_key ) {
-  global $woocommerce;
-  //$product = $_product->get_price_including_tax();
-  return $product;
-}
-
 // Customizing checkout fields
 add_filter( 'woocommerce_checkout_fields' , 'custom_override_checkout_fields' );
 function custom_override_checkout_fields( $fields ) {
@@ -308,6 +300,6 @@ add_action( 'woocommerce_customer_save_address','notify_admin_customer_address_c
 function notify_admin_customer_address_change( $user_id ) {
   global $woocommerce;
 	$mailer   = WC()->mailer();
-	$myclass  = new WC_Customer_Address_Change_Email; // retrieve custom extended class 
-  $mailer->send( $myclass->get_recipient(), $myclass->get_subject(), $myclass->get_content(), $myclass->get_headers(), $myclass->get_attachments() );
+	$My_Class = new WC_Customer_Address_Change_Email; // retrieve custom extended class 
+  $mailer->send( $My_Class->get_recipient(), $My_Class->get_subject(), $My_Class->get_content(), $My_Class->get_headers(), $My_Class->get_attachments() );
 }
