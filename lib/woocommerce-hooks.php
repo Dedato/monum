@@ -23,7 +23,6 @@ if ( ! function_exists( 'woocommerce_header_add_to_cart_fragment' ) ) {
 if ( ! function_exists( 'woo_cart_link' ) ) {
 	function woo_cart_link() {
 		global $woocommerce;
-		//print_r($woocommerce->cart);
 		$currency  = get_woocommerce_currency_symbol(); // €
     $dec_sep   = stripslashes( get_option( 'woocommerce_price_decimal_sep' ) ); // ,
 		?>
@@ -127,7 +126,10 @@ function monum_remove_variation_price_range( $price ) {
 // Replace trailing zeros with dash
 add_filter( 'wc_price', 'monum_change_trailing_zeros', 10, 2 );
 function monum_change_trailing_zeros($price, $args) {
-  $price = preg_replace('/00/', '-', $price);
+  $dec_sep = stripslashes( get_option( 'woocommerce_price_decimal_sep' ) );
+  $search  = $dec_sep . '00';
+  $replace = $dec_sep . '-';
+  $price = preg_replace('/'. $search .'/', $replace, $price);
   return $price;
 }
 
@@ -204,6 +206,14 @@ function frontend_scripts_include_lightbox() {
    Checkout
    ========================================================================== */
 
+// Cart item price without tax
+add_filter( 'woocommerce_cart_item_price', 'filter_woocommerce_cart_item_price', 10, 3 );
+function filter_woocommerce_cart_item_price( $product, $cart_item, $cart_item_key ) {
+  global $woocommerce;
+  //$product = $_product->get_price_including_tax();
+  return $product;
+}
+
 // Customizing checkout fields
 add_filter( 'woocommerce_checkout_fields' , 'custom_override_checkout_fields' );
 function custom_override_checkout_fields( $fields ) {
@@ -263,14 +273,6 @@ function my_custom_checkout_field_display_admin_order_meta ( $order ) {
 /* ==========================================================================
    Emails
    ========================================================================== */
-   
-// Add Payment Type to WooCommerce Admin Email
-//add_action( 'woocommerce_email_after_order_table', 'add_payment_method_to_admin_new_order', 15, 2 ); 
-function add_payment_method_to_admin_new_order( $order, $is_admin_email ) {
-  if ( $is_admin_email ) {
-    echo '<p><strong>Payment Method:</strong> ' . $order->payment_method_title . '</p>';
-  }
-}
 
 // Add custom styling to email templates
 add_action('woocommerce_email_header', 'add_css_to_email', 10, 1);
@@ -286,65 +288,26 @@ function add_css_to_email() {
   </style>';
 }
 
-// Notify shop managers when customer saves address
-add_action( 'woocommerce_customer_save_address','notify_admin_customer_save_address', 10, 2);
-function notify_admin_customer_save_address( $user_id, $load_address ) {
-  
-  global $current_user;
-
-	// get user data
-	get_currentuserinfo();
-	$billing_address = '';
-	$billing_address .= "\n";
-  $billing_address .= $current_user->_billing_first_name;
-  $billing_address .= $current_user->_billing_last_name;
-  $billing_address .= $current_user->_billing_company;
-  $billing_address .= $current_user->_billing_address_1;
-  $billing_address .= $current_user->_billing_city;
-  $billing_address .= $current_user->_billing_postcode;
-  $billing_address .= $current_user->_billing_country;
-  $billing_address .= $current_user->_billing_state;
-  $billing_address .= $current_user->_billing_email;
-  $billing_address .= $current_user->_billing_phone;
-  
-  $shipping_address = get_formatted_shipping_address();
-  
-	// get admin email
-	$email   = get_option( 'admin_email', '' );
-	$subject = "Customer Changed Address";
-
-	// format email
-	$message = 'Username: ' . $current_user->user_login . "\n";
-	$message .= 'User email: ' . $current_user->user_email . "\n";
-	$message .= 'User first name: ' . $current_user->user_firstname . "\n";
-	$message .= 'User last name: ' . $current_user->user_lastname . "\n";
-	$message .= "\n";
-	$message .= "\n";
-	$message .= 'New billing address:' . $billing_address . "\n";
-	$message .= 'New shipping address:' . $shipping_address . "\n";
-
-	// make sure we have all of the required data
-	if ( empty ( $email ) ) {
-		return;
-	}
-	// send email
-	wp_mail( $email, $subject, $message );
+// Add a custom email action to the list of emails WooCommerce should load 
+add_filter( 'woocommerce_email_actions', 'add_customer_address_change_woocommerce_email_actions' ); // WC 2.3+
+function add_customer_address_change_woocommerce_email_actions( $email_actions ) {
+  $email_actions[] = 'woocommerce_customer_save_address';
+  return $email_actions;
 }
 
-function get_formatted_shipping_address() {
-	global $woocommerce;
-	$countries    = new WC_Countries;
-	$country      = $woocommerce->customer->get_shipping_country();
-	$country_full = ( $country && isset( $countries->countries[ $country ] ) ) ? $countries->countries[ $country ] : $country;
-	
-	$shipping_address = '';
-	$shipping_address .= "\n";
-	$shipping_address .= $woocommerce->customer->get_shipping_address() . "\n";
-	$shipping_address .= $woocommerce->customer->get_shipping_city() . " ";
-	$shipping_address .= $woocommerce->customer->get_shipping_state() . " ";
-	$shipping_address .= $woocommerce->customer->get_shipping_postcode() . "\n";
-	$shipping_address .= $country_full;
+// Add a custom email class to the list of emails WooCommerce should load
+add_filter( 'woocommerce_email_classes', 'add_customer_address_change_woocommerce_email_classes' );
+function add_customer_address_change_woocommerce_email_classes( $email_classes ) {
+	require_once( get_stylesheet_directory() . '/includes/class-wc-customer-address-change-email.php' );
+	$email_classes['WC_Customer_Address_Change_Email'] = new WC_Customer_Address_Change_Email();
+	return $email_classes;
+}
 
-	return $shipping_address;
-	unset($countries);
+// Send notification email when customer saves address using custom extended WC_Email class
+add_action( 'woocommerce_customer_save_address','notify_admin_customer_address_change', 10, 2);
+function notify_admin_customer_address_change( $user_id ) {
+  global $woocommerce;
+	$mailer   = WC()->mailer();
+	$myclass  = new WC_Customer_Address_Change_Email; // retrieve custom extended class 
+  $mailer->send( $myclass->get_recipient(), $myclass->get_subject(), $myclass->get_content(), $myclass->get_headers(), $myclass->get_attachments() );
 }
