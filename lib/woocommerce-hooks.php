@@ -300,6 +300,7 @@ add_action( 'woocommerce_customer_save_address','notify_admin_customer_address_c
 function notify_admin_customer_address_change( $user_id ) {
   global $woocommerce;
 	$mailer   = WC()->mailer();
+	$WC_Mail  = new WC_Email();
 	$My_Class = new WC_Customer_Address_Change_Email; // retrieve custom extended class 
-  $mailer->send( $My_Class->get_recipient(), $My_Class->get_subject(), $My_Class->get_content(), $My_Class->get_headers(), $My_Class->get_attachments() );
+  $mailer->send( $My_Class->get_recipient(), $My_Class->get_subject(), $My_Class->get_content(), $WC_Mail->get_headers() );
 }
