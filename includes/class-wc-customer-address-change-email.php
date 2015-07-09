@@ -66,10 +66,6 @@ class WC_Customer_Address_Change_Email extends WC_Email {
    * @return void
    */
 	function trigger( $user_id ) {
-  
-		if ( $user_id ) {
-			$this->object 		= new WP_User( $user_id );
-		}
 
 		if ( ! $this->is_enabled() || ! $this->get_recipient() )
 			return;
@@ -114,7 +110,6 @@ class WC_Customer_Address_Change_Email extends WC_Email {
 		) );
 		return ob_get_clean();
 	}
-
 
 	/**
 	 * Initialise Settings Form Fields
