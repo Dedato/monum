@@ -60,13 +60,14 @@
 /* Navigation
 -------------------------------------------------------------- */
 #navigation {
-  ul.nav {
+  #main-nav {
+    width:95.8333%;
     > li { 
       > a {
         font-weight:400;
         @media only screen and (max-width: 800px) {
           padding:0.5em 1.618em;
-        }        
+        }
         &:hover,
         &:focus {
           color:@mauvegrey;
@@ -93,6 +94,31 @@
           }
         }
       }
+      &.has-icon {
+        > a {
+          font-size:1.5em;
+          padding:0.71em 0.6em;
+          [class^="icon-"], 
+          [class*=" icon-"] {
+            
+          }
+          &:hover,
+          &:focus {
+            box-shadow:none !important;
+            background:#eaeaea !important;
+          }
+        }
+        &.current-menu-item,
+        &.current_page_item {
+          > a {
+            box-shadow:none !important;
+            color:@mauvegrey !important;
+          }
+        } 
+      }
+      &.right {
+        float:right;
+      }
     }
   }
   .woocommerce-product-search {
@@ -111,6 +137,16 @@
 #content {
   @media only screen and (max-width: 800px) {
     margin-top:4.236em;
+  }
+  // Entry
+  .entry {
+    ul, ol {
+      margin-left:1.5em;
+      li {
+        margin-bottom:0.5em;
+      }
+    }
+    strong {font-weight:400;}
   }
   // Sections Template
   &.tmpl-sections {
@@ -241,6 +277,16 @@
 }
 
 
+/* Temporary hide Terrazzo
+-------------------------------------------------------------- */
+#product-131 {
+  .single_variation {
+    .price {
+      display:none;
+    }
+  }  
+}
+
 /* Single Product
 -------------------------------------------------------------- */
 .single-product {
@@ -315,13 +361,19 @@
   .single_variation_wrap {
     margin-top:0.5em;
     .price {
+      display:inline-block;
       font-size:2.224em;
       color:@mauvegrey;
       margin-bottom:0.5em;
-      .amount {font-size:1em; }
+      .amount {
+        float:left;
+        font-size:1em; 
+      }
       .woocommerce-price-suffix {
+        float:right;
         margin-left:1em;
         font-size:0.5em;
+        width:70%;
       }
     }
     .variations_button {
@@ -363,6 +415,7 @@
     display:none;
   }
 }
+// Variations
 div.swatch-wrapper {
   position:relative;
   background:none;
@@ -384,8 +437,7 @@ div.swatch-wrapper {
       .border_radius(@borderradius - 1);
       &:hover {.opacity(1); }
     }
-    &:hover,
-    &:focus {
+    &:hover {
       margin:0;
       .border_radius(@borderradius * 2);
       border:@borderradius solid @mauvegrey;
@@ -556,20 +608,49 @@ div.swatch-wrapper {
       }
     }
   }
+  .widget_nav_menu {
+    .menu {
+      > li {
+        &.current-menu-item,
+        &.current_page_item {
+          > a {
+            color:@mauvegrey !important;
+          }
+        }
+      }
+    }
+  }
 }
 #footer {
   background-color:#FFF;
   padding:2em 1.618em 1em;
   .col-right {
     margin-top:20px;
-    svg {
-      height:30px;
-      width:auto;
-      margin:0 10px 10px 0;
+    .payment-methods {
+      list-style:none;
+      float:right;
+      margin:0;
+      li {
+        display:inline;
+        float:left;
+        margin:0 10px 10px 0;
+        .ie & {
+          width:auto;
+          svg {
+            max-width:80px;
+          }
+        }
+        svg {
+          height:30px;
+          width:auto;
+        }
+      }
     }
     @media only screen and (min-width: 800px) {
       margin-top:0;
-      svg {margin:0 0 0 10px; }
+      .payment-methods {
+        li {margin:0 0 0 10px;}
+      }
     }
   }
 }
