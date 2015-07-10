@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'Monum';
-	src:url('fonts/Monum.eot?-i9mfnj');
-	src:url('fonts/Monum.eot?#iefix-i9mfnj') format('embedded-opentype'),
-		url('fonts/Monum.ttf?-i9mfnj') format('truetype'),
-		url('fonts/Monum.woff?-i9mfnj') format('woff'),
-		url('fonts/Monum.svg?-i9mfnj#Monum') format('svg');
+	src:url('fonts/Monum.eot?-r6wbvo');
+	src:url('fonts/Monum.eot?#iefix-r6wbvo') format('embedded-opentype'),
+		url('fonts/Monum.ttf?-r6wbvo') format('truetype'),
+		url('fonts/Monum.woff?-r6wbvo') format('woff'),
+		url('fonts/Monum.svg?-r6wbvo#Monum') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -37,6 +37,12 @@
 }
 .icon-archive3:before {
 	content: "\e601";
+}
+.icon-user:before {
+	content: "\e604";
+}
+.icon-user2:before {
+	content: "\e605";
 }
 .icon-bag:before {
 	content: "\e602";
