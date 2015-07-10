@@ -82,11 +82,13 @@ if ( ( woo_active_sidebar( 'footer-1' ) ||
 	    <?php if( isset( $woo_options['woo_footer_right'] ) && $woo_options['woo_footer_right'] == 'true' ) {
 	    	echo stripslashes( $woo_options['woo_footer_right_text'] );
 		} else { ?>
-		  <?php echo file_get_contents(esc_url( get_stylesheet_directory_uri() . '/assets/img/ideal_logo.svg') ); ?>
-		  <?php echo file_get_contents(esc_url( get_stylesheet_directory_uri() . '/assets/img/visa_logo.svg') ); ?>
-		  <?php echo file_get_contents(esc_url( get_stylesheet_directory_uri() . '/assets/img/maestro_logo.svg') ); ?>
-		  <?php echo file_get_contents(esc_url( get_stylesheet_directory_uri() . '/assets/img/mastercard_logo.svg') ); ?>
-		  <?php echo file_get_contents(esc_url( get_stylesheet_directory_uri() . '/assets/img/mistercash_logo.svg') ); ?>
+		  <ul class="payment-methods">
+  		  <li class="ideal"><?php echo file_get_contents(esc_url( get_stylesheet_directory_uri() . '/assets/img/ideal_logo.svg') ); ?></li>
+  		  <li class="visa"><?php echo file_get_contents(esc_url( get_stylesheet_directory_uri() . '/assets/img/visa_logo.svg') ); ?></li>
+  		  <li class="maestro"><?php echo file_get_contents(esc_url( get_stylesheet_directory_uri() . '/assets/img/maestro_logo.svg') ); ?></li>
+  		  <li class="mastercard"><?php echo file_get_contents(esc_url( get_stylesheet_directory_uri() . '/assets/img/mastercard_logo.svg') ); ?></li>
+  		  <li class="mistercash"><?php echo file_get_contents(esc_url( get_stylesheet_directory_uri() . '/assets/img/mistercash_logo.svg') ); ?></li>
+		  </ul>
 		<?php } ?>
 		</div>
 
