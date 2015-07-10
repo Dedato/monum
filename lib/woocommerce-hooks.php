@@ -230,7 +230,8 @@ function order_fields($fields) {
     'billing_gender',
     'billing_company', 
     'billing_address_1',
-    'billing_postcode', 
+    'billing_postcode',
+    'billing_city',
     'billing_country', 
     'billing_email', 
     'billing_phone'
@@ -286,7 +287,6 @@ function add_customer_address_change_woocommerce_email_actions( $email_actions )
   $email_actions[] = 'woocommerce_customer_save_address';
   return $email_actions;
 }
-
 // Add a custom email class to the list of emails WooCommerce should load
 add_filter( 'woocommerce_email_classes', 'add_customer_address_change_woocommerce_email_classes' );
 function add_customer_address_change_woocommerce_email_classes( $email_classes ) {
@@ -302,5 +302,5 @@ function notify_admin_customer_address_change( $user_id ) {
 	$mailer   = WC()->mailer();
 	$WC_Mail  = new WC_Email();
 	$My_Class = new WC_Customer_Address_Change_Email; // retrieve custom extended class 
-  $mailer->send( $My_Class->get_recipient(), $My_Class->get_subject(), $My_Class->get_content(), $WC_Mail->get_headers() );
+  $mailer->send( $My_Class->get_recipient(), $My_Class->get_subject(), $My_Class->get_content(), $My_Class->get_headers() );
 }
