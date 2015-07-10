@@ -15,7 +15,7 @@ $main_class = 'no-gallery col-left';
     	<section id="photo-gallery" class="col-left">
         <ul class="images">
           <?php while( have_rows('photo_gallery') ): the_row();
-        		$image   = get_sub_field('photo_gallery_image'); 
+        		$image   = get_sub_field('photo_gallery_image');
         		$caption = get_sub_field('photo_gallery_caption'); ?>
             <li>
               <div class="image">
