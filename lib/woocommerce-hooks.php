@@ -209,14 +209,14 @@ function frontend_scripts_include_lightbox() {
 // Customizing checkout fields
 add_filter( 'woocommerce_checkout_fields' , 'custom_override_checkout_fields' );
 function custom_override_checkout_fields( $fields ) {
-  $fields['billing']['billing_gender'] = array(
+  /*$fields['billing']['billing_gender'] = array(
     'type'      => 'radio',
 		'options'   => array('Male' => __('Male', 'monum'), 'Female' => __('Female', 'monum')),    
     'label'     => __('Gender', 'monum'),
     'required'  => true,
     'class'     => array('form-row-wide', 'radio-field'),
     'clear'     => true
-  );
+  );*/
   $fields['order']['order_comments']['placeholder'] = __('For example special notes for delivery.', 'monum');
   $fields['order']['order_comments']['label'] = __('Comments on the order', 'monum');
   return $fields;
@@ -227,7 +227,7 @@ function order_fields($fields) {
   $order = array(
     'billing_first_name', 
     'billing_last_name', 
-    'billing_gender',
+    //'billing_gender',
     'billing_company', 
     'billing_address_1',
     'billing_postcode',
@@ -249,7 +249,7 @@ function custom_override_default_address_fields( $address_fields ) {
   unset($address_fields['address_2']); // Remove 2nd address
   return $address_fields;
 }
-// Update the order meta with field value
+/* Update the order meta with field value
 add_action( 'woocommerce_checkout_update_order_meta', 'my_custom_checkout_field_update_order_meta' );
 function my_custom_checkout_field_update_order_meta( $order_id ) {
   if ( ! empty( $_POST['billing_gender'] ) ) {
@@ -260,7 +260,7 @@ function my_custom_checkout_field_update_order_meta( $order_id ) {
 add_action( 'woocommerce_admin_order_data_after_billing_address', 'my_custom_checkout_field_display_admin_order_meta', 10, 1 );
 function my_custom_checkout_field_display_admin_order_meta ( $order ) {
   echo '<p><strong>'.__('Gender', 'monum').':</strong> ' . get_post_meta( $order->id, __('Gender', 'monum'), true ) . '</p>';
-}
+}*/
 
 
 /* ==========================================================================
