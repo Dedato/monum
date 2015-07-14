@@ -1,7 +1,11 @@
 /* ==========================================================================
    Monum Theme
    ========================================================================== */
-
+body {
+  &.cookie-bar {
+    margin-top:15px;
+  }
+}
 
 /* Header
 -------------------------------------------------------------- */
@@ -129,7 +133,10 @@
       &.right {
         @media only screen and (min-width: 800px) {
           float:right;
-        }  
+        }
+        @media only screen and (min-width: 800px) and (max-width: 1130px) {
+          margin-right:25px;
+        }
       }
     }
   }
