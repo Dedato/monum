@@ -11,7 +11,7 @@ global $woo_options;
   	<?php woo_main_before(); ?>
   	
     <?php if ( have_posts() ) : ?>
-      <section id="main" class="page-section">
+      <section id="main" name="main" class="page-section">
         <?php while ( have_posts() ): the_post(); ?>                                                       
           <article <?php post_class(); ?>>				
   					<header>
@@ -31,7 +31,7 @@ global $woo_options;
     		$section_title    = get_sub_field('page_section_title');
     		$section_slug     = sanitize_title($section_title);
     		$section_content  = get_sub_field('page_section_content'); ?>
-    		<section id="<?php echo $section_slug; ?>" class="page-section">
+    		<section id="<?php echo $section_slug; ?>" name="<?php echo $section_slug; ?>" class="page-section">
           <article <?php post_class($section_slug); ?>>				
   					<header>
   						<h2><?php echo $section_title; ?></h2>
