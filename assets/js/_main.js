@@ -22,16 +22,31 @@ var Monum = {
   // All pages
   common: {
     init: function() {
-      // JavaScript to be fired on all pages
+      // CookieCuttr
+      $.cookieCuttr({
+        cookieAnalytics: false,
+        cookieAcceptButtonText: 'Accepteer Cookies',
+        cookiePolicyLink: '/privacy-policy/',
+        cookieMessage: 'Monum gebruikt cookies op deze website om bezoeken naar onze website te volgen, wij slaan geen persoonlijke gegevens op.',
+        cookieDomain: 'monum.nl'
+      });
+      if($.cookieAccepted()) {
+        $('body').removeClass('cookie-bar');
+      }
+      // If Cookie Bar is present
+      if ($('.cc-cookies')[0]) {
+        $('body').addClass('cookie-bar');
+      }
+      // ScrollTo section if url has hashtag
+      if(location.hash.length > 1) {
+        var s = location.hash;
+        $('html, body').animate({
+          scrollTop: $(s).offset().top
+        }, 1000);
+      }
     }
   },
-  // Home page
-  home: {
-    init: function() {
-      // JavaScript to be fired on the home page
-    }
-  },
-  // About us page, note the change from about-us to about_us.
+  // Single Product
   single_product: {
     init: function() {
       // Show/hide custom variation fields
