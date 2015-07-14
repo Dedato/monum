@@ -62,6 +62,6 @@ function roots_google_analytics() { ?>
 </script>
 
 <?php }
-if (GOOGLE_ANALYTICS_ID && (WP_ENV !== 'production' || !current_user_can('manage_options'))) {
+if (GOOGLE_ANALYTICS_ID && (WP_ENV !== 'production' || !current_user_can('manage_options')) && isset($_COOKIE['cc_cookie_accept']) && $_COOKIE['cc_cookie_accept'] == 'cc_cookie_accept') {
   add_action('wp_footer', 'roots_google_analytics', 20);
 }
