@@ -1,10 +1,5 @@
 <?php
 /* ==========================================================================
-   WooCommerce function overrides
-   ========================================================================== */
-
-
-/* ==========================================================================
    Header
    ========================================================================== */
    
@@ -46,6 +41,8 @@ remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 3
 function woocommerce_result_count() {
   return;
 }
+// Show short description in product loop
+add_action('woocommerce_after_shop_loop_item_title','woocommerce_template_single_excerpt', 5);
 
 
 /* ==========================================================================
@@ -217,6 +214,8 @@ function custom_override_checkout_fields( $fields ) {
     'class'     => array('form-row-wide', 'radio-field'),
     'clear'     => true
   );*/
+  $fields['shipping']['shipping_first_name']['required'] = false;
+  $fields['shipping']['shipping_last_name']['required'] = false;
   $fields['order']['order_comments']['placeholder'] = __('For example special notes for delivery.', 'monum');
   $fields['order']['order_comments']['label'] = __('Comments on the order', 'monum');
   return $fields;
@@ -300,7 +299,7 @@ add_action( 'woocommerce_customer_save_address','notify_admin_customer_address_c
 function notify_admin_customer_address_change( $user_id ) {
   global $woocommerce;
 	$mailer   = WC()->mailer();
-	$WC_Mail  = new WC_Email();
+	//$WC_Mail  = new WC_Email();
 	$My_Class = new WC_Customer_Address_Change_Email; // retrieve custom extended class 
   $mailer->send( $My_Class->get_recipient(), $My_Class->get_subject(), $My_Class->get_content(), $My_Class->get_headers() );
 }
