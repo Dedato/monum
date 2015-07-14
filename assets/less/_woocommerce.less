@@ -45,6 +45,9 @@ ul.products {
   		.border_radius(@borderradius);
   		border:none !important;
   		h3 {font-size:1.2em !important; }
+  		div[itemprop="description"]{
+        display:none;
+      }
   		.price {
     		font-weight:400 !important;
     		display:none;
@@ -53,6 +56,16 @@ ul.products {
 				margin-top:15px;
 				h3 {margin:0; }
 			}
+    }
+    // Temporary show T'errazzo description
+    &.post-131 {
+      a {
+        .product-details {
+          div[itemprop="description"]{
+        		display:inline;
+      		}
+        }
+      }
     }
   }
 }
@@ -266,4 +279,19 @@ header.title {
   a.edit {
     font-weight:normal;
   }
-}  
+}
+.woocommerce-account {
+  .form-row {
+    label[for="rememberme"] {
+      display:inline;
+      margin-left:1em;
+      #rememberme {margin-right:0.25em; }
+    }
+  }
+  .lost_password {
+    font-size:0.9em !important;
+    text-align:right;
+    float:right;
+    width:48%;
+  }
+}
