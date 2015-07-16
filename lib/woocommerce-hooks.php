@@ -22,7 +22,7 @@ if ( ! function_exists( 'woo_cart_link' ) ) {
     $dec_sep   = stripslashes( get_option( 'woocommerce_price_decimal_sep' ) ); // ,
 		?>
 		<a class="cart-contents" href="<?php echo esc_url( $woocommerce->cart->get_cart_url() ); ?>" title="<?php esc_attr_e( 'View your order', 'monum' ); ?>">
-  		<span class="price"><?php echo $currency .' '. $woocommerce->cart->subtotal . $dec_sep .'-'; ?></span>
+  		<span class="price"><?php echo $woocommerce->cart->get_cart_total(); ?></span>
   		<span class="contents"><?php echo sprintf( _n('%d product', '%d products', $woocommerce->cart->get_cart_contents_count(), 'monum' ), $woocommerce->cart->get_cart_contents_count() );?></span>
     </a>
 		<?php
@@ -261,6 +261,15 @@ function my_custom_checkout_field_display_admin_order_meta ( $order ) {
   echo '<p><strong>'.__('Gender', 'monum').':</strong> ' . get_post_meta( $order->id, __('Gender', 'monum'), true ) . '</p>';
 }*/
 
+// Alter the accept terms and conditions error
+add_filter( 'woocommerce_add_error', 'monum_woocommerce_add_error' );
+function monum_woocommerce_add_error( $error ) {
+  if( $error == 'You must accept our Terms &amp; Conditions.' ) {
+    $error = __('You must accept our Terms &amp; Conditions.', 'monum');
+  }
+  return $error;
+}
+
 
 /* ==========================================================================
    Emails
@@ -272,8 +281,8 @@ function add_css_to_email() {
   echo '
   <style type="text/css">
     #template_header_image {width:600px; text-align:left;}
-    #template_header_image img {width:270px; height:auto; }
-    #template_header h1 {font-size:21px; padding:15px 48px;}
+    #template_header_image img {width:220px; height:auto; }
+    #template_header h1 {font-size:16px; padding:5px 48px;}
     #body_content_inner .order_item td {vertical-align:top !important;}
     #body_content_inner .order_item td img {vertical-align:top !important; display:block; margin-bottom:10px;}
     #template_footer #credit {text-align:left;}
@@ -294,12 +303,43 @@ function add_customer_address_change_woocommerce_email_classes( $email_classes )
 	return $email_classes;
 }
 
+// Customize customer details header in emails
+add_action( 'woocommerce_email_custom_details_header', 'custom_woocommerce_email_customer_details_header', 10, 2 );
+function custom_woocommerce_email_customer_details_header( $heading, $sent_to_admin) {
+	$heading = $sent_to_admin ? __( 'Customer details', 'woocommerce' ) : __( 'Customer details', 'woocommerce' );
+  return $heading;
+}
+
+// Customize customer details in emails
+add_action( 'woocommerce_email_customer_details_fields', 'custom_woocommerce_email_customer_details');
+function custom_woocommerce_email_customer_details( $fields ) {
+	$fields['billing_phone']['label'] = __( 'Telephone', 'woocommerce' );
+  return $fields;
+}
+
 // Send notification email when customer saves address using custom extended WC_Email class
-add_action( 'woocommerce_customer_save_address','notify_admin_customer_address_change', 10, 2);
+add_action( 'woocommerce_customer_save_address','notify_admin_customer_address_change', 10, 1);
 function notify_admin_customer_address_change( $user_id ) {
   global $woocommerce;
 	$mailer   = WC()->mailer();
 	//$WC_Mail  = new WC_Email();
 	$My_Class = new WC_Customer_Address_Change_Email; // retrieve custom extended class 
   $mailer->send( $My_Class->get_recipient(), $My_Class->get_subject(), $My_Class->get_content(), $My_Class->get_headers() );
+}
+
+// Get highest delivery time value
+function get_monum_delivery_time( $order ) {
+  $items = $order->get_items();
+  foreach ( $items as $item_id => $item ) :
+    $_product     = apply_filters( 'woocommerce_order_item_product', $order->get_product_from_item( $item ), $item );
+    $item_meta    = new WC_Order_Item_Meta( $item['item_meta'], $_product );
+    // Variations meta
+		if ( $item_meta->meta ) {
+			$var_id = $item_meta->meta['_variation_id'][0];
+			$delivery_times[] = get_post_meta( $var_id, '_delivery_field', true );
+		}
+  endforeach;
+  arsort($delivery_times); // sort from high to low
+  $delivery_time = $delivery_times[0]; // get highest value
+  return $delivery_time;
 }
