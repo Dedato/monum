@@ -35,6 +35,7 @@ if ( $order ) : ?>
   	$order_name    = $order->billing_first_name . ' ' . $order->billing_last_name;
   	$myaccount_url = get_permalink( get_option( 'woocommerce_myaccount_page_id' ) );
   	$order         = wc_get_order( $order->id );
+    $delivery      = get_monum_delivery_time($order) .' '.  __('working days', 'monum');
   	if ( sizeof( $order->get_items() ) > 0 ) {
 			foreach( $order->get_items() as $item_id => $item ) {
 				$_product  = apply_filters( 'woocommerce_order_item_product', $order->get_product_from_item( $item ), $item );
@@ -50,12 +51,7 @@ if ( $order ) : ?>
 		}	?>
 
 		<p><?php printf(
-		__( 'Dear %1$s,<br />
-<br />
-Thank you for your order at Monum. The order will be processed and the delivery of your %2$s will be within 21 days.<br />
-You can check the status of the order yourself by logging in to <a href="%3$s">my account</a>. If you have any questions, please feel free to contact us at <a href="mailto:urnen@monum.nl">urnen@monum.nl</a> otherwise we are available by phone from (di-vr from 10.00-15.00)<br />
-<br />
-Sincerely, Olaf Wiggers, Cora Roos, Monum (BCR-YCD BV)', 'monum' ) . ' ', $order_name, $product_name, $myaccount_url );
+		__( 'Thank you for ordering %1$s at Monum.nl. We have received the following information and specifications. Could you check these and when something is not correct, let us know by <a href="mailto:urnen@monum.nl">email</a>.', 'monum' ), $product_name );
 		?></p>
 
 		<ul class="order_details">
