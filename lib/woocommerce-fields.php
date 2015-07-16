@@ -11,6 +11,24 @@ add_action( 'woocommerce_process_product_meta_variable', 'woo_save_variable_fiel
  * Create new fields for variations
  */
 function woo_add_variable_fields( $loop, $variation_data, $variation ) { ?>
+  <tr>
+		<td>
+			<?php
+			// Delivery Time Field
+			woocommerce_wp_text_input( 
+				array( 
+					'id'          => '_delivery_field['.$loop.']', 
+					'label'       => __( 'Delivery (working days):', 'monum' ), 
+					'value'       => get_post_meta( $variation->ID, '_delivery_field', true ), 
+          'custom_attributes' => array(
+						'step' 	=> 'any',
+						'min'	  => '1'
+          ) 
+				)
+			);
+			?>
+		</td>
+	</tr>
 	<tr>
 		<td>
 			<?php
@@ -51,15 +69,32 @@ function woo_add_variable_fields_js() { ?>
   <tr>
 		<td>
 			<?php
-			// Number Field
+			// Delivery Field
+			woocommerce_wp_text_input( 
+				array( 
+					'id'                => '_delivery_field[ + loop + ]', 
+					'label'             => __( 'Delivery (working days):', 'monum' ), 
+					'value'             => '',
+					'custom_attributes' => array(
+						'step' 	             => 'any',
+						'min'	               => '1'
+          )
+				)
+			); ?>
+		</td>
+	</tr>
+  <tr>
+		<td>
+			<?php
+			// Diameter Field
 			woocommerce_wp_text_input( 
 				array( 
 					'id'                => '_diameter_field[ + loop + ]', 
 					'label'             => __( 'Diameter (cm):', 'monum' ), 
 					'value'             => '',
 					'custom_attributes' => array(
-						'step' 	=> 'any',
-						'min'	=> '0'
+						'step' 	             => 'any',
+						'min'	               => '0'
           ) 
 				)
 			); ?>
@@ -68,7 +103,7 @@ function woo_add_variable_fields_js() { ?>
 	<tr>
 		<td>
 			<?php
-			// Text Field
+			// Capacity Field
 			woocommerce_wp_text_input( 
 				array( 
 					'id'          => '_holding_capacity_field[ + loop + ]', 
@@ -89,7 +124,16 @@ function woo_save_variable_fields( $post_id ) {
 		$variable_sku          = $_POST['variable_sku'];
 		$variable_post_id      = $_POST['variable_post_id'];
 		
-    // Number Field
+    // Delivery Field
+		$_delivery_field = $_POST['_delivery_field'];
+		for ( $i = 0; $i < sizeof( $variable_sku ); $i++ ) :
+			$variation_id = (int) $variable_post_id[$i];
+			if ( isset( $_delivery_field[$i] ) ) {
+				update_post_meta( $variation_id, '_delivery_field', stripslashes( $_delivery_field[$i] ) );
+			}
+		endfor;
+    
+    // Diameter Field
 		$_number_field = $_POST['_diameter_field'];
 		for ( $i = 0; $i < sizeof( $variable_sku ); $i++ ) :
 			$variation_id = (int) $variable_post_id[$i];
@@ -98,7 +142,7 @@ function woo_save_variable_fields( $post_id ) {
 			}
 		endfor;
 		
-		// Text Field
+		// Capacity Field
 		$_text_field = $_POST['_holding_capacity_field'];
 		for ( $i = 0; $i < sizeof( $variable_sku ); $i++ ) :
 			$variation_id = (int) $variable_post_id[$i];
