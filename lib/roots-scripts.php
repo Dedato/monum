@@ -46,7 +46,7 @@ add_action('wp_enqueue_scripts', 'roots_scripts', 100);
  * Cookie domain is 'auto' configured. See: http://goo.gl/VUCHKM
  */
 function roots_google_analytics() { ?>
-<script>
+<script type="text/plain" class="cc-onconsent-analytics">
   <?php if (WP_ENV === 'production') : ?>
     (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
     function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
@@ -62,6 +62,6 @@ function roots_google_analytics() { ?>
 </script>
 
 <?php }
-if (GOOGLE_ANALYTICS_ID && (WP_ENV !== 'production' || !current_user_can('manage_options')) && isset($_COOKIE['cc_cookie_accept']) && $_COOKIE['cc_cookie_accept'] == 'cc_cookie_accept') {
+if (GOOGLE_ANALYTICS_ID && (WP_ENV !== 'production' || !current_user_can('manage_options')) ) {
   add_action('wp_footer', 'roots_google_analytics', 20);
 }
