@@ -90,7 +90,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 				? sprintf( ' ' . __( ' (taxes estimated for %s)', 'woocommerce' ), WC()->countries->estimated_for_prefix() . __( WC()->countries->countries[ WC()->countries->get_base_country() ], 'woocommerce' ) )
 				: '';
 
-			printf( __( 'Note: Shipping and taxes are estimated%s and will be updated during checkout based on your billing and shipping information.', 'woocommerce' ), $estimated_text );
+			//printf( __( 'Note: Shipping and taxes are estimated%s and will be updated during checkout based on your billing and shipping information.', 'woocommerce' ), $estimated_text );
+			_e('For shipping outside The Netherlands additional fees are charged. These must be paid in advance.', 'monum');
 
 		?></small></p>
 	<?php endif; ?>
