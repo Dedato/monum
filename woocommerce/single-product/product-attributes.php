@@ -45,7 +45,7 @@ ob_start();
   
   <?php
   /* 
-   * Display all cusotm variation fields and show/hide them with jQuery
+   * Display all custom variation fields and show/hide them with jQuery
    */
   $variation_ids = $product->children;
   if ( $product->enable_dimensions_display() ) : ?>
@@ -53,6 +53,7 @@ ob_start();
     <?php foreach( $variation_ids as $var_id ) :
       $diameter   = get_post_meta( $var_id, '_diameter_field', true );
       $capacity   = get_post_meta( $var_id, '_holding_capacity_field', true );
+      $delivery   = get_post_meta( $var_id, '_delivery_field', true );
       if ($diameter): ?>
         <tr class="custom-variation <?php if ( ( $alt = $alt * -1 ) == 1 ) echo 'alt'; ?>" id="var-<?php echo $var_id; ?>">
           <th><?php _e( 'Diameter', 'monum' ) ?></th>
@@ -63,6 +64,12 @@ ob_start();
     	<tr class="custom-variation <?php if ( ( $alt = $alt * -1 ) == 1 ) echo 'alt'; ?>" id="var-<?php echo $var_id; ?>">
         <th><?php _e( 'Holding capacity', 'monum' ) ?></th>
     		<td class="product_capacity"><?php echo $capacity . ' '; _e('L', 'monum'); ?></td>
+    	</tr>
+    	<?php endif; ?>
+    	<?php if ($delivery): ?>
+    	<tr class="custom-variation <?php if ( ( $alt = $alt * -1 ) == 1 ) echo 'alt'; ?>" id="var-<?php echo $var_id; ?>">
+        <th><?php _e( 'Delivery', 'monum' ) ?></th>
+    		<td class="product_delivery"><?php echo $delivery . ' '; _e('working days', 'monum'); ?></td>
     	</tr>
     	<?php endif; ?>
     <?php endforeach; ?>
