@@ -26,6 +26,29 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 wp_head();
 woo_head();
 ?>
+<script type="text/javascript" src="https://s3-eu-west-1.amazonaws.com/assets.cookieconsent.silktide.com/1.0.10/plugin.min.js"></script>
+<script type="text/javascript">
+// <![CDATA[
+cc.initialise({
+	cookies: {
+		analytics: {},
+		necessary: {}
+	},
+	settings: {
+		consenttype: "implicit",
+		hideprivacysettingstab: true,
+		style: "light",
+		onlyshowbanneronce: true,
+		disableallsites: true,
+		useSSL: false,
+		refreshOnConsent: true
+	},
+	strings: {
+		notificationTitleImplicit: 'Monum.nl maakt gebruik van cookies om je bezoek aan onze website zo optimaal mogelijk te maken. Deze cookies slaan geen persoonlijke gegevens op. <a href="http://monum.dd-webtest.com/privacy-en-cookies/">Meer informatie</a>.',
+	}
+});
+// ]]>
+</script>
 </head>
 <body <?php body_class(); ?>>
 <?php woo_top(); ?>
