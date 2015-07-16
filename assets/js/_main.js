@@ -22,19 +22,8 @@ var Monum = {
   // All pages
   common: {
     init: function() {
-      // CookieCuttr
-      $.cookieCuttr({
-        cookieAnalytics: false,
-        cookieAcceptButtonText: 'Accepteer Cookies',
-        cookiePolicyLink: '/privacy-policy/',
-        cookieMessage: 'Monum gebruikt cookies op deze website om bezoeken naar onze website te volgen, wij slaan geen persoonlijke gegevens op.',
-        cookieDomain: 'monum.nl'
-      });
-      if($.cookieAccepted()) {
-        $('body').removeClass('cookie-bar');
-      }
       // If Cookie Bar is present
-      if ($('.cc-cookies')[0]) {
+      if ($('.cc-top')[0]) {
         $('body').addClass('cookie-bar');
       }
       // ScrollTo section if url has hashtag
@@ -50,6 +39,7 @@ var Monum = {
   single_product: {
     init: function() {
       // Show/hide custom variation fields
+      $('#tab-additional_information table.shop_attributes tr.custom-variation').css('display', 'none');
       $('.variations_form input[name=variation_id]').bind('change', function() {
         var $var_id  = $(this).val();
       	if ($var_id) {

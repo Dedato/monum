@@ -16,8 +16,5 @@
     "modernizr": "2.8.2",
     "respimage": "~1.4.1"
   },
-  "devDependencies": {
-    "js-cookie": "https://github.com/js-cookie/js-cookie.git#~2.0.2",
-    "cookieCuttr": "https://github.com/weare2ndfloor/cookieCuttr.git"
-  }
+  "devDependencies": {}
 }
