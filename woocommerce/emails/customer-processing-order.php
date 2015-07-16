@@ -9,13 +9,17 @@
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
-}
-
-?>
+} ?>
 
 <?php do_action('woocommerce_email_header', $email_heading); ?>
 
-<p><?php _e( "Your order has been received and is now being processed. Your order details are shown below for your reference:", 'woocommerce' ); ?></p>
+<?php
+$order_name = $order->billing_first_name . ' ' . $order->billing_last_name;  
+$delivery   = get_monum_delivery_time($order) .' '.  __('working days', 'monum'); 
+?>
+
+<p><?php printf( __( "Dear %s,<br /><br />Your order has been received and is now being processed by us. Your details and specifications are shown below as reference.", "monum" ), $order_name); ?></p>
+<p><?php printf( __( "We will compile the urn according to your specific needs with the utmost care. At this time the delivery time is <strong>%s</strong>. When the urn is ready for dispatch you will be notified and you will be able to track the shipment.", "monum" ), $delivery ); ?></p>
 
 <?php do_action( 'woocommerce_email_before_order_table', $order, $sent_to_admin, $plain_text ); ?>
 
