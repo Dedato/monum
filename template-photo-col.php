@@ -16,11 +16,16 @@ $main_class = 'no-gallery col-left';
         <ul class="images">
           <?php while( have_rows('photo_gallery') ): the_row();
         		$image   = get_sub_field('photo_gallery_image');
-        		$caption = get_sub_field('photo_gallery_caption'); ?>
+        		$img_src = $image['sizes']['shop_catalog'];
+        		$caption = get_sub_field('photo_gallery_caption'); 
+        		// Retina Images
+        		if (function_exists('wr2x_get_retina_from_url')) {
+        			$img_2x_src = wr2x_get_retina_from_url($img_src);
+        		} ?>
             <li>
               <div class="image">
                 <a class="zoom" itemprop="image" title="<?php echo $image['title']; ?>" href="<?php echo $image['sizes']['large']; ?>" data-rel="prettyPhoto[page-gallery]">
-                  <img src="<?php echo $image['sizes']['shop_catalog']; ?>" alt="<?php echo $image['alt']; ?>" />
+                  <img src="<?php echo $img_src; ?>" srcset="<?php echo $img_src . ' 1x'; if($img_2x_src){ echo ', ' . $img_2x_src . ' 2x';} ?>" alt="<?php echo $image['alt']; ?>" />
                 </a>
               </div>  
               <p class="caption"><?php echo $caption; ?></p>
