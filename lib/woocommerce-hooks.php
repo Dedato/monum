@@ -283,6 +283,7 @@ function add_css_to_email() {
     #template_header_image {width:600px; text-align:left;}
     #template_header_image img {width:220px; height:auto; }
     #template_header h1 {font-size:16px; padding:5px 48px;}
+    #body_content_inner table {margin-bottom:15px;}
     #body_content_inner .order_item td {vertical-align:top !important;}
     #body_content_inner .order_item td img {vertical-align:top !important; display:block; margin-bottom:10px;}
     #template_footer #credit {text-align:left;}
