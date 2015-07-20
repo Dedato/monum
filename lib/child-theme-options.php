@@ -24,6 +24,23 @@ add_action('after_setup_theme', 'roots_setup');
   
 /* Increase JPG compression */ 
 add_filter( 'jpeg_quality', create_function( '', 'return 100;' ) );
+   
+/* Custom style Wordpress login page */
+function wp_custom_login() { 
+	echo '<link rel="stylesheet" type="text/css" href="'. get_stylesheet_directory_uri() .'/assets/css/wp-admin.css" />'; 
+}
+// Change url logo Wordpress login page
+function put_my_url(){
+	return (get_home_url());
+}
+// Custom style Wordpress dashboard
+function wp_custom_admin() { 
+	echo '<link rel="stylesheet" type="text/css" href="'. get_stylesheet_directory_uri() .'/assets/css/wp-admin.css" />'; 
+}
+add_action('login_head', 'wp_custom_login');
+add_filter('login_headerurl', 'put_my_url');
+add_action('admin_head', 'wp_custom_admin'); 
+
 
 
 /* ==========================================================================
