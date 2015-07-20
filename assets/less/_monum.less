@@ -51,7 +51,7 @@ body {
     &::before {
       .icon();
       content:"\e602";
-      font-size:2em;
+      font-size:32px;
       padding:0.4em;
     }
     span.price {font-weight:400;}
@@ -217,9 +217,8 @@ body {
             .image {
               float:right;
               .zoom {
-                img {
-                  width:250px;
-                }
+                float:right;
+                max-width:250px;
               }
             }  
             .caption {
@@ -656,15 +655,20 @@ div.swatch-wrapper {
         display:inline;
         float:left;
         margin:0 10px 10px 0;
-        .ie & {
-          width:auto;
-          img {
-            max-width:80px;
-          }
-        }
         img {
           height:30px;
           width:auto;
+          .ie8 & {
+            display:none;
+          }
+        }
+        &.visa {
+          img {
+            .ie9 & {
+              max-width:80px;
+              height:auto;
+            }
+          }  
         }
       }
     }
