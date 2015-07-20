@@ -53,6 +53,7 @@ div.pp_woocommerce {
 #cc-notification {
   #cc-notification-wrapper {
     h2 {
+      display:inline;
       margin:0;
       font-size:1em;
       line-height:1;
@@ -65,9 +66,19 @@ div.pp_woocommerce {
       }
       #cc-notification-moreinfo {display:none; }
     }
-    #cc-notification-permissions,
+    #cc-notification-permissions {display:none;}
     .cc-notification-buttons {
-      display:none;
+      float:right;
+      list-style:none;
+      margin:0;
+      li {
+        display:inline;
+        float:left;
+        #cc-approve-button-thissite {
+          margin-right:10px;
+          font-weight:300;
+        }
+      }
     }
   }
 }
