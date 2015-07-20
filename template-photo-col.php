@@ -25,7 +25,7 @@ $main_class = 'no-gallery col-left';
             <li>
               <div class="image">
                 <a class="zoom" itemprop="image" title="<?php echo $image['title']; ?>" href="<?php echo $image['sizes']['large']; ?>" data-rel="prettyPhoto[page-gallery]">
-                  <img src="<?php echo $img_src; ?>" srcset="<?php echo $img_src . ' 1x'; if($img_2x_src){ echo ', ' . $img_2x_src . ' 2x';} ?>" alt="<?php echo $image['alt']; ?>" />
+                  <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" srcset="<?php echo $img_src . ' 1x'; if($img_2x_src){ echo ', ' . $img_2x_src . ' 2x';} ?>" alt="<?php echo $image['alt']; ?>" />
                 </a>
               </div>  
               <p class="caption"><?php echo $caption; ?></p>
