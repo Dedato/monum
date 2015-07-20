@@ -11,44 +11,49 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
  global $woo_options, $woocommerce;
 
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <!--[if lt IE 7]>  <html class="no-js ie ie6 lt-ie9 lt-ie8 lt-ie7" <?php language_attributes(); ?>> <![endif]-->
 <!--[if IE 7]>     <html class="no-js ie ie7 lt-ie9 lt-ie8 lt-ie7" <?php language_attributes(); ?>> <![endif]-->
 <!--[if IE 8]>     <html class="no-js ie ie8 lt-ie9 lt-ie8" <?php language_attributes(); ?>> <![endif]-->
 <!--[if IE 9]>     <html class="no-js ie ie9 lt-ie9" <?php language_attributes(); ?>> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> <html <?php language_attributes(); ?>>
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js" <?php language_attributes(); ?>> <!--<![endif]-->
 <head>
-<meta charset="<?php bloginfo( 'charset' ); ?>" />
-<title><?php wp_title( '-'); ?></title>
-<?php woo_meta(); ?>
-<link rel="pingback" href="<?php echo esc_url( get_bloginfo( 'pingback_url' ) ); ?>" />
-<?php
-wp_head();
-woo_head();
-?>
-<script type="text/javascript" src="https://s3-eu-west-1.amazonaws.com/assets.cookieconsent.silktide.com/1.0.10/plugin.min.js"></script>
-<script type="text/javascript">
-// <![CDATA[
-cc.initialise({
-	cookies: {
-		analytics: {},
-		necessary: {}
-	},
-	settings: {
-		consenttype: "implicit",
-		hideprivacysettingstab: true,
-		style: "light",
-		onlyshowbanneronce: true,
-		disableallsites: true,
-		useSSL: false,
-		refreshOnConsent: true
-	},
-	strings: {
-		notificationTitleImplicit: 'Monum.nl maakt gebruik van cookies om je bezoek aan onze website zo optimaal mogelijk te maken. Deze cookies slaan geen persoonlijke gegevens op. <a href="http://monum.dd-webtest.com/privacy-en-cookies/">Meer informatie</a>.',
-	}
-});
-// ]]>
-</script>
+  <meta charset="<?php bloginfo( 'charset' ); ?>" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title><?php wp_title( '-'); ?></title>
+  <?php woo_meta(); ?>
+  <link rel="pingback" href="<?php echo esc_url( get_bloginfo( 'pingback_url' ) ); ?>" />
+  <?php
+  wp_head();
+  woo_head();
+  ?>
+  <script type="text/javascript" src="https://s3-eu-west-1.amazonaws.com/assets.cookieconsent.silktide.com/1.0.10/plugin.min.js"></script>
+  <script type="text/javascript">
+  // <![CDATA[
+  cc.initialise({
+  	cookies: {
+  		analytics: {},
+  		necessary: {}
+  	},
+  	settings: {
+  		consenttype: "implicit",
+  		hideprivacysettingstab: true,
+  		style: "light",
+  		onlyshowbanneronce: true,
+  		disableallsites: true,
+  		useSSL: true,
+  		refreshOnConsent: true
+  	},
+  	strings: {
+    	notificationTitle: 'Monum.nl maakt gebruik van cookies om je bezoek aan onze website zo optimaal mogelijk te maken. Deze cookies slaan geen persoonlijke gegevens op. <a href="http://monum.dd-webtest.com/privacy-en-cookies/">Meer informatie</a>.',
+  		notificationTitleImplicit: 'Monum.nl maakt gebruik van cookies om je bezoek aan onze website zo optimaal mogelijk te maken. Deze cookies slaan geen persoonlijke gegevens op. <a href="http://monum.dd-webtest.com/privacy-en-cookies/">Meer informatie</a>.',
+  		allowCookies: 'Sluit',
+  		allowCookiesImplicit: 'Sluit'
+  	}
+  });
+  // ]]>
+  </script>
 </head>
 <body <?php body_class(); ?>>
 <?php woo_top(); ?>
