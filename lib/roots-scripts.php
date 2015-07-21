@@ -26,6 +26,16 @@ function roots_scripts() {
     );
   } else {
     $get_assets = file_get_contents(get_stylesheet_directory_uri() . '/assets/manifest.json');
+    /*$url = get_stylesheet_directory_uri() . '/assets/manifest.json';
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+    curl_setopt($ch, CURLOPT_HEADER, false);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_REFERER, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+    $get_assets = curl_exec($ch);
+    curl_close($ch);*/
     $assets     = json_decode($get_assets, true);
     $assets     = array(
       'css'       => '/assets/css/main.min.css?' . $assets['assets/css/main.min.css']['hash'],
