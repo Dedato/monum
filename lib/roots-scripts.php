@@ -25,17 +25,24 @@ function roots_scripts() {
       'modernizr' => '/assets/vendor/modernizr/modernizr.js'
     );
   } else {
-    $get_assets = file_get_contents(get_stylesheet_directory_uri() . '/assets/manifest.json');
-    /*$url = get_stylesheet_directory_uri() . '/assets/manifest.json';
+    //$get_assets = file_get_contents(get_stylesheet_directory_uri() . '/assets/manifest.json');
+    
+    /* start cURL workaround
+     * file_get_contents on HTTPS workaround with cURL:
+     * http://stackoverflow.com/questions/1975461/how-to-get-file-get-contents-work-with-https
+     */
+    $url = get_stylesheet_directory_uri() . '/assets/manifest.json';
     $ch = curl_init();
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
     curl_setopt($ch, CURLOPT_HEADER, false);
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+    curl_setopt($ch, CURLOPT_USERAGENT,'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.13) Gecko/20080311 Firefox/2.0.0.13');
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_REFERER, $url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $get_assets = curl_exec($ch);
-    curl_close($ch);*/
+    curl_close($ch);
+    /* end cURL workaround */
+    
     $assets     = json_decode($get_assets, true);
     $assets     = array(
       'css'       => '/assets/css/main.min.css?' . $assets['assets/css/main.min.css']['hash'],
