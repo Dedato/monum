@@ -29,9 +29,11 @@ var Monum = {
       // ScrollTo section if url has hashtag
       if(location.hash.length > 1) {
         var s = location.hash;
-        $('html, body').animate({
-          scrollTop: $(s).offset().top
-        }, 1000);
+        $('body').imagesLoaded( function() {
+          $('html, body').animate({
+            scrollTop: $(s).offset().top
+          }, 1000);
+        });
       }
     }
   },
