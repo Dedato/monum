@@ -8,6 +8,7 @@ module.exports = function(grunt) {
   var jsFileList = [
     'assets/vendor/cookieconsent/cookieconsent.js',
     'assets/vendor/respimage/respimage.min.js',
+    'assets/vendor/imagesloaded/imagesloaded.pkgd.min.js',
     'assets/js/plugins/*.js',
     'assets/js/_*.js'
   ];
