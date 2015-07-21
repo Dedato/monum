@@ -4,17 +4,12 @@
 
 /* Source Sans Pro */
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400);
-
 body.login {
 	background-color:#FFF;
 	color:#666666;
 	font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
 	font-weight:300;
 }
-a {color:#A3A3A3; text-decoration:none; }
-a:active, a:hover {color:#707070; text-decoration:none; }
-a:focus {color:#707070; text-decoration:none; }
-a:active, a:focus {outline:none; text-decoration:none; }
 
 /* Base */
 #login {padding:8% 15px 0; }
