@@ -593,14 +593,22 @@ div.swatch-wrapper {
   background:none;
   font-weight:400;
   font-size:0.875em;
-  .content_excerpt {
-    .read-more {
-      cursor:pointer;
+  p {
+    &:last-child {
+      margin-bottom:0;
     }
   }
   .content_more {
     margin-top:1.618em;
     display:none;
+    p {
+      &:last-child {
+        margin-bottom:0;
+      }
+    }
+  }
+  .read-more {
+    cursor:pointer;
   }
 }
 
