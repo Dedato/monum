@@ -643,7 +643,7 @@ div.swatch-wrapper {
         &.current-menu-item,
         &.current_page_item {
           > a {
-            color:@mauvegrey !important;
+            //color:@mauvegrey !important;
           }
         }
       }
@@ -655,6 +655,7 @@ div.swatch-wrapper {
   padding:2em 1.618em 1em;
   .col-right {
     margin-top:20px;
+    .labels,
     .payment-methods {
       list-style:none;
       float:right;
@@ -680,8 +681,14 @@ div.swatch-wrapper {
         }
       }
     }
+    .labels {
+      float:left; 
+    }
     @media only screen and (min-width: 800px) {
       margin-top:0;
+      .labels {
+        li {margin:0 10px 0 0;}
+      }
       .payment-methods {
         li {margin:0 0 0 10px;}
       }
