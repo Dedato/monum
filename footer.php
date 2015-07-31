@@ -82,6 +82,11 @@ if ( ( woo_active_sidebar( 'footer-1' ) ||
 	    <?php if( isset( $woo_options['woo_footer_right'] ) && $woo_options['woo_footer_right'] == 'true' ) {
 	    	echo stripslashes( $woo_options['woo_footer_right_text'] );
 		} else { ?>
+		  <ul class="labels">
+  		  <li class="greenweb">
+  		    <a href="http://api.thegreenwebfoundation.org/greencheckimage/www.monum.nl" title="<?php _e('This website is hosted Green - checked by thegreenwebfoundation.org', 'monum'); ?>" target="_blank"><img src="<?php echo get_stylesheet_directory_uri() . '/assets/img/green_web_smiley.svg'; ?>" alt="Green Web Foundation"></a>  
+    		</li>
+		  </ul>  
 		  <ul class="payment-methods">
   		  <li class="ideal"><img src="<?php echo get_stylesheet_directory_uri() . '/assets/img/ideal_logo.svg'; ?>" alt="iDEAL"></li>
   		  <li class="visa"><img src="<?php echo get_stylesheet_directory_uri() . '/assets/img/visa_logo.svg'; ?>" alt="Visa"></li>
