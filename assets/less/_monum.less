@@ -48,6 +48,10 @@ body {
 	 	}
   }
   .cart-contents {
+    color:lighten(@color_links, 10%) !important;
+    &:hover {
+      color:darken(@color_links, 5%) !important;
+    }
     &::before {
       .icon();
       content:"\e602";
@@ -56,6 +60,18 @@ body {
     }
     span.price {font-weight:400;}
     span.contents {text-transform:none;}
+    &.filled {
+      color:@mauvegrey !important;
+      &:hover {
+        color:darken(@mauvegrey, 5%) !important;
+      }
+      &::before {
+        background-color:@mauvegrey !important;
+      	&:hover {
+      		background:darken(@mauvegrey, 5%) !important;
+      	}
+      }	
+    }
   }
   .nav-toggle {
     a {
@@ -63,6 +79,7 @@ body {
     }
   }
 }
+
 
 /* Navigation
 -------------------------------------------------------------- */
