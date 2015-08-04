@@ -20,8 +20,9 @@ if ( ! function_exists( 'woo_cart_link' ) ) {
 		global $woocommerce;
 		$currency  = get_woocommerce_currency_symbol(); // €
     $dec_sep   = stripslashes( get_option( 'woocommerce_price_decimal_sep' ) ); // ,
+    $count     = $woocommerce->cart->get_cart_contents_count();
 		?>
-		<a class="cart-contents" href="<?php echo esc_url( $woocommerce->cart->get_cart_url() ); ?>" title="<?php esc_attr_e( 'View your order', 'monum' ); ?>">
+		<a class="cart-contents<?php if ($count > 0){ echo ' filled'; } ?>" href="<?php echo esc_url( $woocommerce->cart->get_cart_url() ); ?>" title="<?php esc_attr_e( 'View your order', 'monum' ); ?>">
   		<span class="price"><?php echo $woocommerce->cart->get_cart_total(); ?></span>
   		<span class="contents"><?php echo sprintf( _n('%d product', '%d products', $woocommerce->cart->get_cart_contents_count(), 'monum' ), $woocommerce->cart->get_cart_contents_count() );?></span>
     </a>
