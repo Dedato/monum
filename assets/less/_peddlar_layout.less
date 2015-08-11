@@ -9,6 +9,10 @@ h1, h2, h3, h4, h5, h6 {
 	color:@mauvegrey;
 	font-family:'Source Sans Pro', arial, sans-serif;
 	font-weight:400;
+	a {
+  	&:hover,
+  	&:focus {text-decoration:none; }
+	}
 }
 h3, 
 .gamma {
@@ -97,6 +101,33 @@ button.button,
   		background-color:@mauvegrey !important;
   	}
 	}
+}
+
+/* Posts
+-------------------------------------------------------------- */
+.post,
+.type-page {
+  .entry {
+    margin-bottom:1em;
+  }  
+}
+
+.post,
+.type-page {
+  .post-more {
+    border-top:none;
+    font-size:1em;
+    padding-top:0;
+  }
+  .post-meta,
+  .post-more {
+    a {
+      &:hover,
+    	&:focus {
+    		text-decoration:none;
+    	}
+    }
+  }
 }
 
 .post .entry blockquote, 

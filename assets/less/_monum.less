@@ -630,6 +630,49 @@ div.swatch-wrapper {
 }
 
 
+/* Single Post
+-------------------------------------------------------------- */
+.single {
+  .post {
+    p {
+      &:first-child {
+        color:@grey;
+        font-size:1em;
+      }
+    }
+  }  
+}
+
+
+
+/* Sidebar
+-------------------------------------------------------------- */
+#sidebar {
+  .widget {
+    ul {
+      li {
+        a {
+          &:hover,
+          &:focus {
+            text-decoration:none;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Archives
+-------------------------------------------------------------- */
+.archive-header {
+  border-bottom:none;
+  margin: 0 0 1.618em;
+  padding:0;
+  .archive-rss {
+    display:none;
+  }
+}
+
 
 /* Footer
 -------------------------------------------------------------- */
