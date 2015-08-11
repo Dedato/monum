@@ -70,3 +70,27 @@ $editor       = get_role('editor');
 $shopmanager  = get_role('shop_manager');
 $editor->add_cap('edit_theme_options');
 $shopmanager->add_cap('edit_theme_options');
+
+
+
+/* ==========================================================================
+   Peddlar Overrides
+   ========================================================================== */
+
+function woo_post_meta( ) { ?>
+<aside class="post-meta">
+	<ul>
+		<li class="post-date">
+			<span><?php the_time( get_option( 'date_format' ) ); ?></span>
+		</li>
+		<li class="post-author">
+			<?php the_author_posts_link(); ?>
+		</li>
+		<li class="post-category">
+			<?php the_category( ', ') ?>
+		</li>
+		<?php edit_post_link( __( '{ Edit }', 'woothemes' ), '<li class="edit">', '</li>' ); ?>
+	</ul>
+</aside>
+<?php
+}
