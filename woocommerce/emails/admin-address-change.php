@@ -4,7 +4,7 @@
  *
  * @author 		WooThemes
  * @package 	WooCommerce/Templates/Emails
- * @version     1.6.4
+ * @version   2.4.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -23,7 +23,7 @@ $countries = new WC_Countries;
 <p><?php printf( __( '%s just updated his billing and/or shipping address:', 'monum' ), $current_user->user_firstname . ' ' . $current_user->user_lastname ); ?></p>
 
 <h2><?php _e( 'Customer details', 'woocommerce' ); ?></h2>
-<table cellspacing="0" cellpadding="4" style="width: 100%; border: 1px solid #eee;" border="1" bordercolor="#eee">
+<table class="td" cellspacing="0" cellpadding="6" style="width: 100%; font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;" border="1">
 	<tbody>  	
 		<tr class="order_item">  
     	<td width="50%"><?php _e('Username','woocommerce'); ?></td>
@@ -45,7 +45,7 @@ $countries = new WC_Countries;
 </table>
 
 <h2><?php _e( 'Billing Address', 'woocommerce' ); ?></h2>
-<table cellspacing="0" cellpadding="4" style="width: 100%; border: 1px solid #eee;" border="1" bordercolor="#eee">
+<table class="td" cellspacing="0" cellpadding="6" style="width: 100%; font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;" border="1">
 	<tbody>		
   	<tr class="order_item">	
     	<td width="50%"><?php _e('Country','woocommerce'); ?></td>
@@ -93,7 +93,7 @@ $countries = new WC_Countries;
 </table>
 
 <h2><?php _e( 'Shipping Address', 'woocommerce' ); ?></h2>
-<table cellspacing="0" cellpadding="4" style="width: 100%; border: 1px solid #eee;" border="1" bordercolor="#eee">
+<table class="td" cellspacing="0" cellpadding="6" style="width: 100%; font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;" border="1">
 	<tbody>
   	<tr class="order_item">	
     	<td width="50%"><?php _e('Country','woocommerce'); ?></td>
