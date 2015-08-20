@@ -86,7 +86,7 @@ if ( false != $slides ) {
   			$img_md_2x_src 	= wr2x_get_retina_from_url($img_md_src);
   			$img_lg_2x_src 	= wr2x_get_retina_from_url($img_lg_src);
   		}
-			if ( '' != $image ) {
+			if ( has_post_thumbnail() ) {
 				$css_class .= ' has-image no-video';
 				$slide_media = $image;
 				ob_start();
