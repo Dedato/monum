@@ -21,6 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 <head>
   <meta charset="<?php bloginfo( 'charset' ); ?>" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="google-site-verification" content="NbWcOvxp_juUwHt1gXb_PO_XB_lN_9N5pRuz2JszB1k" />
   <title><?php wp_title( '-'); ?></title>
   <?php woo_meta(); ?>
   <link rel="pingback" href="<?php echo esc_url( get_bloginfo( 'pingback_url' ) ); ?>" />
