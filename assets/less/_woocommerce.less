@@ -21,6 +21,9 @@
 -------------------------------------------------------------- */
 ul.products {
 	li.product {
+  	.home .entry & {
+  	  margin-bottom: 0;
+  	}  
 		a {
 			img {
 				.border_radius(@borderradius);
@@ -68,7 +71,20 @@ ul.products {
       }
     }
   }
+  // Homepage
+  .home .entry & {
+    margin-bottom: 0;
+    li.product {
+      margin-bottom: 0;
+      a {
+        img {
+          margin: 0 auto 0;
+        }
+      }
+    }
+  }
 }
+
 #header .cart-contents {
 	color:@mauvegrey;
 }   
