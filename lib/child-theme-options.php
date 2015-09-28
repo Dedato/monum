@@ -41,6 +41,13 @@ add_action('login_head', 'wp_custom_login');
 add_filter('login_headerurl', 'put_my_url');
 add_action('admin_head', 'wp_custom_admin'); 
 
+// Allow SVG uploads
+function cc_mime_types($mimes) {
+  $mimes['svg'] = 'image/svg+xml';
+  return $mimes;
+}
+add_filter('upload_mimes', 'cc_mime_types');
+
 
 
 /* ==========================================================================
