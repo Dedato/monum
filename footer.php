@@ -84,15 +84,8 @@ if ( ( woo_active_sidebar( 'footer-1' ) ||
 		} else { ?>
 		  <ul class="labels">
   		  <li class="greenweb">
-  		    <a href="http://api.thegreenwebfoundation.org/greencheckimage/www.monum.nl" title="<?php _e('This website is hosted Green - checked by thegreenwebfoundation.org', 'monum'); ?>" target="_blank"><img src="<?php echo get_stylesheet_directory_uri() . '/assets/img/green_web_smiley.svg'; ?>" alt="Green Web Foundation"></a>  
+  		    <a href="http://www.thegreenwebfoundation.org" title="<?php _e('This website is hosted Green - checked by thegreenwebfoundation.org', 'monum'); ?>" target="_blank"><img src="<?php echo get_stylesheet_directory_uri() . '/assets/img/cleanbits.png'; ?>" alt="Cleanbits Sustainable Internet"></a>  
     		</li>
-		  </ul>  
-		  <ul class="payment-methods">
-  		  <li class="ideal"><img src="<?php echo get_stylesheet_directory_uri() . '/assets/img/ideal_logo.svg'; ?>" alt="iDEAL"></li>
-  		  <li class="visa"><img src="<?php echo get_stylesheet_directory_uri() . '/assets/img/visa_logo.svg'; ?>" alt="Visa"></li>
-  		  <li class="maestro"><img src="<?php echo get_stylesheet_directory_uri() . '/assets/img/maestro_logo.svg'; ?>" alt="Maestro"></li>
-  		  <li class="mastercard"><img src="<?php echo get_stylesheet_directory_uri() . '/assets/img/mastercard_logo.svg'; ?>" alt="Mastercard"></li>
-  		  <li class="mistercash"><img src="<?php echo get_stylesheet_directory_uri() . '/assets/img/mistercash_logo.svg'; ?>" alt="MisterCash"></li>
 		  </ul>
 		<?php } ?>
 		</div>
