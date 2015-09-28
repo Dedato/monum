@@ -84,7 +84,7 @@ if ( ( woo_active_sidebar( 'footer-1' ) ||
 		} else { ?>
 		  <ul class="labels">
   		  <li class="greenweb">
-  		    <a href="http://www.thegreenwebfoundation.org" title="<?php _e('This website is hosted Green - checked by thegreenwebfoundation.org', 'monum'); ?>" target="_blank"><img src="<?php echo get_stylesheet_directory_uri() . '/assets/img/cleanbits.png'; ?>" alt="Cleanbits Sustainable Internet"></a>  
+  		    <a href="http://www.thegreenwebfoundation.org/green-web-check/?url=https%3A%2F%2Fwww.monum.nl" title="<?php _e('This website is hosted Green - checked by thegreenwebfoundation.org', 'monum'); ?>" target="_blank"><img src="<?php echo get_stylesheet_directory_uri() . '/assets/img/cleanbits.png'; ?>" alt="Cleanbits Sustainable Internet"></a>  
     		</li>
 		  </ul>
 		<?php } ?>
