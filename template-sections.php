@@ -19,6 +19,16 @@ global $woo_options;
   					</header>  
             <section class="entry">
               <?php the_content(); ?>
+              <?php if( have_rows('payment_methods_logos') ): ?>
+                <ul class="payment-methods">
+            		  <?php while( have_rows('payment_methods_logos') ): the_row();
+                		$payment_title = get_sub_field('payment_method_name');
+                		$payment_slug  = sanitize_title($payment_title);
+                		$payment_logo  = get_sub_field('payment_method_logo'); ?>
+                		<li class="<?php echo $payment_slug; ?>"><img src="<?php echo $payment_logo['url']; ?>" alt="<?php echo $payment_title; ?>" /></li>
+                  <?php endwhile; ?>
+                </ul>  
+              <?php endif; ?>
 	          </section>
             <?php edit_post_link( __( '{ Edit }', 'woothemes' ), '<span class="small">', '</span>' ); ?>
           </article>                            
