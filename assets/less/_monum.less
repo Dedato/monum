@@ -52,13 +52,17 @@ body {
     &:hover {
       color:darken(@color_links, 5%) !important;
     }
-    &::before {
+    &:before {
       .icon();
-      content:"\e602";
-      font-size:32px;
-      padding:0.4em;
+      content: "\e602";
+      font-size: 27px;
+      padding: 0.4em;
+      line-height: 0.85; // Optical center correction
     }
-    span.price {font-weight:400;}
+    span.price {
+      font-weight: 400;
+      margin-top: 0.15em !important;
+    }
     span.contents {text-transform:none;}
     &.filled {
       color:@mauvegrey !important;
@@ -250,6 +254,32 @@ body {
         &.no-gallery {
           .column(12);
         }
+      }
+    }
+  }
+}
+
+/* Payment Logo's
+-------------------------------------------------------------- */
+.payment-methods {
+  list-style:none;
+  margin:0;
+  margin-left:0 !important;
+  display:inline-block;
+  li {
+    display:inline;
+    float:left;
+    margin:0 10px 10px 0;
+    @media only screen and (min-width: 800px) {
+      margin:0 10px 0 0;
+    }
+    img {
+      height: 30px;
+      width: auto;
+      max-width: 75px;
+      vertical-align: middle;
+      .ie8 & {
+        display:none;
       }
     }
   }
@@ -724,14 +754,13 @@ div.swatch-wrapper {
   padding:2em 1.618em 1em;
   .col-right {
     margin-top:20px;
-    .labels,
-    .payment-methods {
+    .labels {
       list-style:none;
       float:right;
       margin:0;
       li {
         display:inline;
-        float:left;
+        float:right;
         margin:0 10px 10px 0;
         img {
           height:30px;
@@ -740,26 +769,12 @@ div.swatch-wrapper {
             display:none;
           }
         }
-        &.visa {
-          img {
-            .ie9 & {
-              max-width:80px;
-              height:auto;
-            }
-          }  
-        }
       }
-    }
-    .labels {
-      float:left; 
     }
     @media only screen and (min-width: 800px) {
       margin-top:0;
       .labels {
         li {margin:0 10px 0 0;}
-      }
-      .payment-methods {
-        li {margin:0 0 0 10px;}
       }
     }
   }
