@@ -101,3 +101,21 @@ function woo_post_meta( ) { ?>
 </aside>
 <?php
 }
+
+
+if ( ! function_exists( 'woo_logo' ) ) {
+  function woo_logo () {
+  	global $woo_options;
+  	if ( isset( $woo_options['woo_texttitle'] ) && $woo_options['woo_texttitle'] == 'true' ) return; // Get out if we're not displaying the logo.
+  
+  	$logo = esc_url( get_template_directory_uri() . '/images/logo.png' );
+  	if ( isset( $woo_options['woo_logo'] ) && $woo_options['woo_logo'] != '' ) { $logo = $woo_options['woo_logo']; }
+  	if ( is_ssl() ) { $logo = str_replace( 'http://', 'https://', $logo ); }
+    ?>
+  	<a id="logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'description' ) ); ?>">
+    	<img src="<?php echo esc_url( $logo ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" onerror="this.src='<?php echo get_stylesheet_directory_uri() .'/assets/img/monum_logo_fb.png'; ?>'">
+  	</a>
+  <?php
+  }
+}
+add_action( 'woo_header_inside', 'woo_logo' );
