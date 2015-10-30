@@ -66,7 +66,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	<header id="header" class="col-full">
 		<?php woo_header_inside(); ?>
 
-	    <hgroup>
+    <hgroup>
 			<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php bloginfo( 'name' ); ?></a></h1>
 			<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
 			<?php if ( is_woocommerce_activated() && isset( $woo_options['woocommerce_header_cart_link'] ) && 'true' == $woo_options['woocommerce_header_cart_link'] ) { ?>
