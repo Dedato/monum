@@ -60,50 +60,38 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 <?php woo_top(); ?>
 
 <div class="wrapper">
-
-    <?php woo_header_before(); ?>
-
+  <?php woo_header_before(); ?>
 	<header id="header" class="col-full">
 		<?php woo_header_inside(); ?>
-
     <hgroup>
 			<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php bloginfo( 'name' ); ?></a></h1>
 			<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
 			<?php if ( is_woocommerce_activated() && isset( $woo_options['woocommerce_header_cart_link'] ) && 'true' == $woo_options['woocommerce_header_cart_link'] ) { ?>
-	        	<nav class="nav cart">
-	        		<?php woo_cart_link(); ?>
-	       		</nav>
-	        <?php } ?>
+      	<nav class="nav cart">
+      		<?php woo_cart_link(); ?>
+     		</nav>
+      <?php } ?>
 			<span class="nav-toggle"><a href="#navigation"><span><?php _e( 'Navigation', 'woothemes' ); ?></span></a></span>
 		</hgroup>
-
-        <?php woo_nav_before(); ?>
-
-	</header><!-- /#header -->
-
-</div><!--/.wrapper-->
+    <?php woo_nav_before(); ?>
+	</header>
+</div>
 
 <nav id="navigation" class="col-full" role="navigation">
-
 	<div class="main-nav-inner">
-
 		<?php
 		if ( function_exists( 'has_nav_menu' ) && has_nav_menu( 'primary-menu' ) ) {
 			wp_nav_menu( array( 'depth' => 6, 'sort_column' => 'menu_order', 'container' => 'ul', 'menu_id' => 'main-nav', 'menu_class' => 'nav', 'theme_location' => 'primary-menu' ) );
-		} else {
-		?>
-	    <ul id="main-nav" class="nav">
-			<?php if ( is_page() ) $highlight = 'page_item'; else $highlight = 'page_item current_page_item'; ?>
-			<li class="<?php echo $highlight; ?>"><a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php _e( 'Home', 'woothemes' ); ?></a></li>
-			<?php wp_list_pages( 'sort_column=menu_order&depth=6&title_li=&exclude=' ); ?>
-		</ul><!-- /#nav -->
-	    <?php } ?>
-
-	    <?php woo_nav_after(); ?>
-
-	</div><!--/.main-nav-inner-->
-
-</nav><!-- /#navigation -->
+		} else { ?>
+      <ul id="main-nav" class="nav">
+  			<?php if ( is_page() ) $highlight = 'page_item'; else $highlight = 'page_item current_page_item'; ?>
+  			<li class="<?php echo $highlight; ?>"><a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php _e( 'Home', 'woothemes' ); ?></a></li>
+  			<?php wp_list_pages( 'sort_column=menu_order&depth=6&title_li=&exclude=' ); ?>
+  		</ul>
+    <?php } ?>
+    <?php woo_nav_after(); ?>
+	</div>
+</nav>
 
 <?php woo_content_before(); ?>
 
