@@ -14,15 +14,8 @@ body {
 -------------------------------------------------------------- */
 #header {
 	#logo {
-		display:block;
-		float:none;
-		margin:0;
-		img {
-  		//width:270px; // must match actual width of logo divided by 2 for retina
-    }
-	}
-	hgroup {
-		display:block;
+		display: block;
+		margin: 0;
 	}
 	.site-description {
 	 	width:221px;
@@ -48,6 +41,7 @@ body {
 	 	}
   }
   .cart-contents {
+    display: block;
     color:lighten(@color_links, 10%) !important;
     &:hover {
       color:darken(@color_links, 5%) !important;
@@ -107,6 +101,9 @@ body {
           padding-left:0.5em;
           color:@mauvegrey;
         }
+        img.iclflag {
+          vertical-align: middle;
+        }
       }
       &.current_page_item,
       &.current_page_parent,
@@ -151,7 +148,8 @@ body {
           }
         }
         &.current-menu-item,
-        &.current_page_item {
+        &.current_page_item,
+        &.menu-item-language-current {
           > a {
             box-shadow:none !important;
             color:@mauvegrey !important;
@@ -163,7 +161,27 @@ body {
           float:right;
         }
         @media only screen and (min-width: 800px) and (max-width: 1130px) {
-          margin-right:25px;
+          margin-right: 25px;
+        }
+      }
+      // Language Switcher
+      &.menu-item-language {
+        @media only screen and (min-width: 800px) {
+          float:right;
+        }
+      }
+      ul.sub-menu {
+        padding: 0;
+        &.submenu-languages {
+          right: 0;
+          width: 100%;
+          li {
+            font-size: 1em;
+            > a {
+              padding: 1.416em;
+              img.iclflag {vertical-align: middle; }
+            }
+          }
         }
       }
     }
@@ -285,6 +303,12 @@ body {
       .ie8 & {
         display:none;
       }
+    }
+    // Temporary
+    &.visa,
+    &.maestro,
+    &.mastercard {
+      display: none;
     }
   }
 }
@@ -546,6 +570,30 @@ body {
           > a {
             //color:@mauvegrey !important;
           }
+        }
+      }
+    }
+  }
+}
+.content-info {
+  .lang_sel_click {
+    margin-left: 2.08333%;
+    margin-right: 2.08333%;
+    ul {
+      margin: 0;
+      list-style: none;
+      li {
+        a, 
+        ul li {
+          float: left;
+          margin-right: 5px;
+          line-height: 1;
+          img.iclflag {
+            vertical-align: top;
+          }
+        }
+        ul li {
+          a {margin: 0; }
         }
       }
     }
