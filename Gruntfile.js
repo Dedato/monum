@@ -143,7 +143,8 @@ module.exports = function(grunt) {
           '.ftppass',
           '.git',
           '.grunt',
-          '.jshintrc'
+          '.jshintrc',
+          '*.md'
         ],
         keep: [],
         simple: true
