@@ -282,7 +282,7 @@ function add_css_to_email() {
   echo '
   <style type="text/css">
     #template_header_image {width:600px; text-align:left;}
-    #template_header_image img {width:352px; height:auto; }
+    #template_header_image img {width:355px; height:auto; }
     #header_wrapper {padding:5px 48px; }
     #header_wrapper h1 {font-size:16px;}
     #body_content_inner table {margin-bottom:15px;}
