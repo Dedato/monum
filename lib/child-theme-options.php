@@ -113,7 +113,7 @@ if ( ! function_exists( 'woo_logo' ) ) {
   	if ( is_ssl() ) { $logo = str_replace( 'http://', 'https://', $logo ); }
     ?>
   	<a id="logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'description' ) ); ?>">
-    	<img src="<?php echo esc_url( $logo ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" onerror="this.src='<?php echo get_stylesheet_directory_uri() .'/assets/img/monum_logo_fb.png'; ?>'">
+    	<img src="<?php echo esc_url( $logo ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" onerror="this.src='<?php echo get_stylesheet_directory_uri() .'/assets/img/Monum-logo.png'; ?>'">
   	</a>
   <?php
   }
