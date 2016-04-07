@@ -29,7 +29,7 @@ $order_name = $order->billing_first_name . ' ' . $order->billing_last_name;
 $delivery   = get_monum_delivery_time($order) .' '.  __('working days', 'monum'); 
 ?>
 
-<p><?php printf( __( "Dear %s,<br /><br />The payment procedure is completed and the production of the urn is put into operation. Your details and specifications are shown below as reference.", "monum" ), $order_name); ?></p>
+<p><?php printf( __( "Dear %s,<br /><br />The payment procedure is completed and the composing of your urn is put into motion. Your details are shown below as reference.", "monum" ), $order_name); ?></p>
 <p><?php printf( __( "We will compile the urn according to your specific needs with the utmost care. At this time the delivery time is <strong>%s</strong>. When the urn is ready for dispatch you will be notified and you will be able to track the shipment.", "monum" ), $delivery ); ?></p>
 
 

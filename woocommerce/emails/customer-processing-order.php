@@ -31,7 +31,7 @@ $delivery   = get_monum_delivery_time($order) .' '.  __('working days', 'monum')
 ?>
 
 <p><?php printf( __( "Dear %s,<br /><br />Your order has been received and is now being processed by us. Your details and specifications are shown below as reference.", "monum" ), $order_name); ?></p>
-<p><?php printf( __( "We will compile the urn according to your specific needs with the utmost care. At this time the delivery time is <strong>%s</strong>. When the urn is ready for dispatch you will be notified and you will be able to track the shipment.", "monum" ), $delivery ); ?></p>
+<p><?php printf( __( "We will compile the urn according to your specific needs with the utmost care. At this time the delivery time of your order is within <strong>%s</strong>. When the urn is ready for dispatch you will be notified and you will be able to track the shipment.", "monum" ), $delivery ); ?></p>
 
 
 <?php

@@ -51,7 +51,7 @@ if ( $order ) : ?>
 		}	?>
 
 		<p><?php printf(
-		__( 'Thank you for ordering %1$s at Monum.nl. We have received the following information and specifications. Could you check these and when something is not correct, let us know by <a href="mailto:urnen@monum.nl">email</a>.', 'monum' ), $product_name );
+		__( 'Dear %1$s,<br /><br />Thank you for your order at Monum. The order is being processed and the delivery time of your %2$s is within %3$s.<br />You can check the status of the order yourself by logging in to <a href="%4$s">my account</a>. If you have any questions, please feel free to contact us at <a href="mailto:urnen@monum.nl">urnen@monum.nl</a> otherwise we are available by phone from (mo - fr from 10.00 - 19.00)<br /><br />Sincerely, Olaf Wiggers, Cora Roos, Monum (BCR-YCD BV)', 'monum' ) . ' ', $order_name, $product_name, $delivery, $myaccount_url );
 		?></p>
 
 		<ul class="order_details">
