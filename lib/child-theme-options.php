@@ -49,6 +49,77 @@ function cc_mime_types($mimes) {
 add_filter('upload_mimes', 'cc_mime_types');
 
 
+/* ==========================================================================
+   Peddlar Overrides
+   ========================================================================== */
+
+function woo_post_meta( ) { ?>
+<aside class="post-meta">
+	<ul>
+		<li class="post-date">
+			<span><?php the_time( get_option( 'date_format' ) ); ?></span>
+		</li>
+		<li class="post-author">
+			<?php the_author_posts_link(); ?>
+		</li>
+		<li class="post-category">
+			<?php the_category( ', ') ?>
+		</li>
+		<?php edit_post_link( __( '{ Edit }', 'woothemes' ), '<li class="edit">', '</li>' ); ?>
+	</ul>
+</aside>
+<?php
+}
+
+// Override woo_logo
+if ( ! function_exists( 'woo_logo' ) ) {
+  function woo_logo () {
+  	global $woo_options;
+  	if ( isset( $woo_options['woo_texttitle'] ) && $woo_options['woo_texttitle'] == 'true' ) return; // Get out if we're not displaying the logo.
+  
+  	$logo = esc_url( get_template_directory_uri() . '/images/logo.png' );
+  	if ( isset( $woo_options['woo_logo'] ) && $woo_options['woo_logo'] != '' ) { $logo = $woo_options['woo_logo']; }
+  	if ( is_ssl() ) { $logo = str_replace( 'http://', 'https://', $logo ); }
+    ?>
+  	<a id="logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'description' ) ); ?>">
+    	<img src="<?php echo esc_url( $logo ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" onerror="this.src='<?php echo get_stylesheet_directory_uri() .'/assets/img/Monum-logo.png'; ?>'">
+  	</a>
+  <?php
+  }
+}
+add_action( 'woo_header_inside', 'woo_logo' );
+
+/* 
+ * Remove Peddlar Actions
+ * Remove this action if you want to use the custom font styling set in the Peddlar theme options
+ */
+add_action( 'after_setup_theme', 'remove_peddlar_theme_styles', 0);
+function remove_peddlar_theme_styles() {
+  remove_action('woo_head', 'woo_custom_styling');
+  remove_action('woo_head', 'woo_custom_typography');
+}
+
+/*
+ * Override woothemes_wp_head
+ * Remove this action if you want to use the custom stylesheets set in the Peddlar theme options
+ */
+if ( ! function_exists( 'woothemes_wp_head' ) ) {
+  function woothemes_wp_head() {
+  	do_action( 'woothemes_wp_head_before' );
+  	// Output custom favicon
+  	if ( function_exists( 'woo_output_custom_favicon' ) )
+  		woo_output_custom_favicon();
+  	// Output CSS from standarized styling options
+  	if ( function_exists( 'woo_head_css' ) )
+  		woo_head_css();
+  	// Output shortcodes stylesheet
+  	if ( function_exists( 'woo_shortcode_stylesheet' ) )
+  		woo_shortcode_stylesheet();
+  	do_action( 'woothemes_wp_head_after' );
+  }
+}
+add_action( 'wp_head', 'woothemes_wp_head', 10 );
+
 
 /* ==========================================================================
    Custom functions
@@ -77,49 +148,6 @@ $editor       = get_role('editor');
 $shopmanager  = get_role('shop_manager');
 $editor->add_cap('edit_theme_options');
 $shopmanager->add_cap('edit_theme_options');
-
-
-
-/* ==========================================================================
-   Peddlar Overrides
-   ========================================================================== */
-
-function woo_post_meta( ) { ?>
-<aside class="post-meta">
-	<ul>
-		<li class="post-date">
-			<span><?php the_time( get_option( 'date_format' ) ); ?></span>
-		</li>
-		<li class="post-author">
-			<?php the_author_posts_link(); ?>
-		</li>
-		<li class="post-category">
-			<?php the_category( ', ') ?>
-		</li>
-		<?php edit_post_link( __( '{ Edit }', 'woothemes' ), '<li class="edit">', '</li>' ); ?>
-	</ul>
-</aside>
-<?php
-}
-
-
-if ( ! function_exists( 'woo_logo' ) ) {
-  function woo_logo () {
-  	global $woo_options;
-  	if ( isset( $woo_options['woo_texttitle'] ) && $woo_options['woo_texttitle'] == 'true' ) return; // Get out if we're not displaying the logo.
-  
-  	$logo = esc_url( get_template_directory_uri() . '/images/logo.png' );
-  	if ( isset( $woo_options['woo_logo'] ) && $woo_options['woo_logo'] != '' ) { $logo = $woo_options['woo_logo']; }
-  	if ( is_ssl() ) { $logo = str_replace( 'http://', 'https://', $logo ); }
-    ?>
-  	<a id="logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'description' ) ); ?>">
-    	<img src="<?php echo esc_url( $logo ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" onerror="this.src='<?php echo get_stylesheet_directory_uri() .'/assets/img/Monum-logo.png'; ?>'">
-  	</a>
-  <?php
-  }
-}
-add_action( 'woo_header_inside', 'woo_logo' );
-
 
 
 /* ==========================================================================
