@@ -2,6 +2,7 @@
    Monum Theme
    ========================================================================== */
 body {
+  background:white;
   &.cookie-bar {
     margin-top:30px;
     @media only screen and (min-width: 750px) {
@@ -180,6 +181,10 @@ body {
             > a {
               padding: 1.416em;
               img.iclflag {vertical-align: middle; }
+              &:hover,
+              &:focus {
+                background: @lightgrey;
+              }
             }
           }
         }
@@ -246,6 +251,7 @@ body {
             text-align:left;
             width:100%;
             color:@mauvelight;
+            font-weight:400;
           }
         }
       }
@@ -304,12 +310,12 @@ body {
         display:none;
       }
     }
-    // Temporary
+    /* Temporary
     &.visa,
     &.maestro,
     &.mastercard {
       display: none;
-    }
+    }*/
   }
 }
 
@@ -403,10 +409,9 @@ body {
       border-style:solid;
       border-width:1px;
       .border_radius_top(@borderradius);
-      color:@mauvelight;
-      font-weight:400;
+      color:@mauvegrey !important;
       &:hover {
-        color:@mauvegrey;
+        color:@grey;
         border-bottom:1px solid @mauvegrey;
       }
     }
@@ -414,12 +419,12 @@ body {
       > a {
         background:white;
         border-color:@mauvegrey @mauvegrey transparent;
-        color:@mauvegrey;
+        color:@grey !important;
         &:hover {
           border-color:@mauvegrey @mauvegrey transparent;
         }
         &:after {
-          color:@mauvegrey;
+          color:@grey;
           &:hover {color:@mauvelight; }
         }
       }
@@ -464,6 +469,7 @@ body {
   border:1px solid @mauvegrey;
   border-top:0;
   background:none;
+  color:@mauvegrey;
   font-weight:400;
   font-size:0.875em;
   p {
@@ -481,6 +487,7 @@ body {
     }
   }
   .read-more {
+    color:@grey !important;
     cursor:pointer;
   }
 }
@@ -565,10 +572,17 @@ body {
   .widget_nav_menu {
     .menu {
       > li {
+        > a {
+          color:@mauvelight;
+          &:hover,
+          &:focus {
+            color:@mauvegrey;
+          }
+        }
         &.current-menu-item,
         &.current_page_item {
           > a {
-            //color:@mauvegrey !important;
+            color:@mauvelight;
           }
         }
       }

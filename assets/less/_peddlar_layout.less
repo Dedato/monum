@@ -34,11 +34,22 @@ table {
   thead,
   tbody,
   tfoot {
-    th,
-    strong {
+    strong {font-weight:400; }
+    th {
+      color:@mauvegrey;
       font-weight:400;
     }
   }  
+  thead {color:@mauvegrey;}
+  tbody {
+    tr {
+      td {
+        a {color:@mauvegrey; }
+        &:first-child {color:@mauvegrey; }
+      }
+    }
+    th {color:@mauvegrey; }
+  }
 }
 
 
@@ -69,7 +80,7 @@ input[type="password"] {
 .woocommerce-product-search #searchsubmit, 
 #searchform input[type="submit"], 
 .woocommerce-product-search input[type="submit"] {
-  background-color:transparent !important;
+  background-color:transparent;
 }
 
 
@@ -84,21 +95,21 @@ input.button,
 button.button,
 .wrapper .woo-sc-button, 
 .slide-content .woo-sc-button {
-  color:white !important;
-  background-color: @mauvelight !important;
+  color:white;
+  background-color: @mauvelight;
   padding:0.875em 1em;
   font-weight:400;
   -webkit-appearance:none;
   .border_radius(@borderradius);
   &:hover,
 	&:focus {
-		background-color:@mauvegrey !important;
+		background-color:@mauvegrey;
 	}
 	&.alt {
   	background-color:darken(@mauvelight,5%);
     &:hover,
   	&:focus {
-  		background-color:@mauvegrey !important;
+  		background-color:@mauvegrey;
   	}
 	}
 }
@@ -141,8 +152,19 @@ button.button,
 	background: @mauvelight;
 }
 
-#navigation ul.nav > li:hover > a {
-	.inset_box_shadow(0,0.207em,0,0,@mauvelight);
+#navigation ul.nav > li {
+  > a {
+    color: @mauvelight;
+    &:hover,
+    &:focus {
+      color: @mauvegrey;
+    }
+  }
+  &:hover {
+    > a {
+	    .inset_box_shadow(0,0.207em,0,0,@mauvelight);
+	  }
+	}
 }
 
 ul.products li.product .product-details .star-rating:before, 

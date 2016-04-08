@@ -2,58 +2,72 @@
    Peddlar Theme Color
    ========================================================================== */
    
-@color_links: @mauvelight;
+@color_links: @mauvegrey;
 
 .widget_woodojo_tabs ul.nav-tabs li.active a:after, .widget_woodojo_tabs ul.nav-tabs li a:hover:after  {
-	color: @color_links !important;
+	color: @color_links;
 }
 
 a {
-	color: @color_links !important;
+	color: @color_links;
 	&:hover {
-		color:darken(@color_links,20%) !important;
+		color:darken(@color_links,20%);
 	}
 }
 
 .post .entry blockquote, .type-page .entry blockquote {
-	border-left-color: @color_links !important;
+	border-left-color: @color_links;
 }
 
 .single-product .summary .price, .post p.tags:before, .type-page p.tags:before, .post .post-meta .post-author a:before, .type-page .post-meta .post-author a:before, .post .post-meta .post-category a:before, .type-page .post-meta .post-category a:before, .post .post-more .comments a:before, .type-page .post-more .comments a:before, p.stars a:hover:before, p.stars a:focus:before {
-	color: @color_links !important;
+	color: @color_links;
 }
 
 .flex-control-paging li a.flex-active, .quantity .plus:hover, .quantity .minus:hover {
-	background: @color_links !important;
+	background: @color_links;
 }
 
 #header .cart-contents:before, a.button, #commentform #submit, .submit, .added_to_cart, input[type=submit], input.button, button.button, .wrapper .woo-sc-button {
-	background-color: lighten(@color_links, 10%) !important;
+  color:white;
+	background-color: lighten(@color_links, 10%);
 	&:hover {
-		background: darken(@color_links, 5%) !important;
+		background: darken(@color_links, 5%);
 	}
 }
 
 #header .cart-contents:hover:before, a.button.alt, #commentform #submit.alt, .submit.alt, .added_to_cart.alt, input[type=submit].alt, input.button.alt, button.button.alt, .wrapper .woo-sc-button.alt {
-	background: darken(@color_links,5%) !important;
+  color:white;
+	background: darken(@color_links,5%);
 }
 
 #navigation ul.nav > li:hover > a {
-	.inset_box_shadow(0,0.207em,0,0,@color_links) !important;
+	.inset_box_shadow(0,0.207em,0,0,@color_links);
 }
 
 ul.products li.product .product-details .star-rating:before, ul.products li.product .product-details .star-rating span:before {
-	color:@color_links - #333 !important;
+	color:@color_links - #333;
 }
 
 .ie8 {
 	ul.products li.product .product-details {
-		background: @color_links !important;
+		background: @color_links;
 	}
 }
 
 @media only screen and (min-width: 800px) {
 	ul.products li.product .product-details {
-		background: fade(@color_links,95%) !important;
+		background: fade(@color_links,95%);
 	}
+}
+
+.entry {
+  a {color:@mauvegrey; }
+}
+
+.post,
+.type-page {
+  .post-meta,
+  .post-more {
+    a {color:@mauvegrey; }
+  }
 }

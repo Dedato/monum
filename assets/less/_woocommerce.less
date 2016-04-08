@@ -128,6 +128,7 @@ ul.products {
     text-align:right;
     width:50%;
     margin:25px;
+    color:@mauvegrey;
     @media only screen and (max-width: 800px) {
       float:none;
       width:100%;
@@ -154,7 +155,13 @@ ul.products {
       border:none;
       border-radius:0;
       font-size:0.8em;
-      td {padding: inherit; }
+      td {
+        padding: inherit;
+        &.label {
+          font-weight:300;
+          color:@grey;
+        }
+      }
       tr {
         display: inline-block;
         float: none;
@@ -247,6 +254,7 @@ ul.products {
         background:none;
       }
       th {
+        color:@grey;
         font-weight:400;
       }
     }
@@ -274,6 +282,8 @@ div.swatch-wrapper {
     position:absolute;
     top:0;
     left:0;
+    color:@grey;
+    font-weight:300;
   }
   .swatch-anchor {
     margin:@borderradius - 1;
@@ -451,6 +461,7 @@ table.cart {
       }
       label {
         font-weight:400;
+        color:@mauvegrey;
         img {display:none; }
       }
       &.payment_method_paypal {background-image:url('../img/paypal_logo.svg'); }
@@ -471,6 +482,7 @@ table.cart {
         font-weight:300;
         padding:0;
         a {
+          color:@mauvegrey;
           &:hover,
           &:focus {text-decoration:none; }
         }
@@ -547,5 +559,16 @@ header.title {
     text-align:right;
     float:right;
     width:48%;
+  }
+}
+
+
+.woo-pagination {
+  .page-numbers {
+    font-weight: 400;
+    &.current {
+      background:@mauvegrey;
+      color:white;
+    }
   }
 }
