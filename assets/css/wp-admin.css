@@ -17,10 +17,10 @@ body.login {
 /* Logo */
 .login h1 {text-align:left; }
 .login h1 a {
-  background:url('../img/monum_logo.png') 0 0 no-repeat;
-	background-size:270px 58px;
+  background:url('../img/Monum-logo@2x.png') 0 0 no-repeat;
+	background-size:355px 58px;
 	height:58px;
-	width:270px;
+	width:355px;
   margin:0 0 25px;
 	color:#707070;
 	font-size:50px;
