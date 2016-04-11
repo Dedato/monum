@@ -96,7 +96,7 @@ add_action( 'woo_header_inside', 'woo_logo' );
 add_action( 'after_setup_theme', 'remove_peddlar_theme_styles', 0);
 function remove_peddlar_theme_styles() {
   remove_action('woo_head', 'woo_custom_styling');
-  remove_action('woo_head', 'woo_custom_typography');
+  remove_action('woo_head', 'woo_custom_typography'); // Typo settings & Google Webfont
 }
 
 /*
