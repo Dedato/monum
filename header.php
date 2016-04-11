@@ -55,6 +55,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
   });
   // ]]>
   </script>
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
 </head>
 <body <?php body_class(); ?>>
 <?php woo_top(); ?>
